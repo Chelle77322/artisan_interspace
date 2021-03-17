@@ -1,0 +1,38 @@
+{
+  "name": "artisan_interspace",
+  "version": "1.0.0",
+  "description": "A content management website for artists and art lovers alike",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chelle77322/artisan_interspace.git"
+  },
+  "keywords": [
+    "Content",
+    "Management",
+    "Blog",
+    "WordPress",
+    "Art",
+    "Art",
+    "Lovers",
+    "Discussion"
+  ],
+  "author": "Michelle Hall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chelle77322/artisan_interspace/issues"
+  },
+  "homepage": "https://github.com/Chelle77322/artisan_interspace#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.1"
+  }
+}
