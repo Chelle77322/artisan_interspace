@@ -1,0 +1,22 @@
+<!-- Create a loop for each item -->
+{{#each artisans as |artisan|}}
+<div class = "row mb-4 artisan">
+    <div class = "col-md-5">
+        <h2>
+        {{{get_emoji}}}
+        <a href = "/artisan/{{artisan.id}}">{{artisan.name}}</a>
+        </h2>
+        <p>
+        <span for = "img" aria-label = "money">💲</span>
+        <span class = "dollar-amount"> {{format_amount artisan.needed_funding}}</span>
+          </p>
+        <p> Created by {{artisan.user.name}} on {{format_date artisan.date_created}}</p>
+      
+        <div class = "col-md-7">
+            <p>
+            {{artisan.description}}
+            </p>
+        </div>
+        </div>
+    </div>
+{{/each}}
