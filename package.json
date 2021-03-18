@@ -4,7 +4,9 @@
   "description": "A content management website for artists and art lovers alike",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds/seed.js"
   },
   "repository": {
     "type": "git",
@@ -34,5 +36,10 @@
     "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.2.1"
   }
 }
