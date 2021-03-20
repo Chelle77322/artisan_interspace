@@ -11,10 +11,9 @@ const SequelizeStore = require('connect-session-sequelize')
 
 const app = express();
 const PORT = process.env.PORT || 5110;
-console.log(PORT);
 
 //Setting up Handlebards.js engine
-const bars = handlebars.create({helpers});
+const bars = handlebars.create({ helpers });
 
 const sesh = {
     secret: 'SSH secret secret',
@@ -32,12 +31,14 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(_dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+console.log(path);
 
 
 
 app.use(routes);
-routes.initialize(app);
+
 console.log(app);
 console.log(routes);
 
