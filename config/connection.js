@@ -9,8 +9,9 @@ if (process.env.JAWSDB_URL){
       process.env.DB_NAME,
       process.env.DB_USER,
       process.env.DB_PASSWORD, 
+      process.env.DB_HOST,
     {
-        host:'https://cryptic-badlands-33395.herokuapp.com/',
+        host:'localhost',
         dialect:'mysql',
         dialectOptions: {
           decimalNumbers: true,
