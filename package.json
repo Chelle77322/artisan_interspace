@@ -28,6 +28,7 @@
     "url": "https://github.com/Chelle77322/artisan_interspace/issues"
   },
   "homepage": "https://github.com/Chelle77322/artisan_interspace#readme",
+  
   "dependencies": {
     "bcrypt": "^5.0.1",
     "config-json": "^1.0.0",
