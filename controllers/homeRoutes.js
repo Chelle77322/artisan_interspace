@@ -1,11 +1,11 @@
 const router = require ('express').Router();
-const {Artisan, User} = require('../models');
+const {artisan, user} = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (request, result)=> {
     try {
         //Get everything and join it with the user session
-        const artisanData = await Artisan.findAll({
+        const artisanData = await artisan.findAll({
             include:[
                 {
                     model: User,
@@ -15,10 +15,10 @@ router.get('/', async (request, result)=> {
             ],
         });
 //Serialize data here
-const artisans = artisanData.map((artisan)=> artisan.get({plain: true}));
+const Artisans = artisanData.map((Artisan)=> artisan.get({plain: true}));
 //Put the serialized data and session flag into the template to be used for the homepage
 result.render('homepage', {
-    artisans,
+    Artisans,
     logged_in: request.session.logged_in
 });
     } catch (error){
@@ -33,12 +33,12 @@ router.get('/artisan/:id', async (request, result) => {
             {
               include:[
                   {
-                      model: User,
+                      model: user,
                       attributes: ['name'],
                   },
               ],  
             });
-    const artisan = artisanData.get({ plain: true});
+    const Artisan = artisanData.get({ plain: true});
     result.render('artisan', {
         ...artisan,
         logged_in: request.session.logged_in
@@ -50,10 +50,10 @@ router.get('/artisan/:id', async (request, result) => {
  router.get('/profile', withAuth, async (request, result) => {
 try {
     //Locates logged in user based on session ID
-    const userData = await User.findByPk(request.session.user_id,
+    const userData = await user.findByPk(request.session.user_id,
     {
         attributes: {exclude: ['password'] },
-        include: [{model: Artisan}],
+        include: [{model: artisan}],
     });
     const user = userData.get({plain: true});
     result.render('profile', {
