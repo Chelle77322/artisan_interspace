@@ -6,7 +6,7 @@ user.hasMany(artisan, {
     onDelete: 'CASCADE'
 });
 
-artisan.belongsTo(User,{
+artisan.belongsTo(user,{
     foreignKey: 'user_id'
 });
 module.exports = {user, artisan};
