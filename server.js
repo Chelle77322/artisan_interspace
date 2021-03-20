@@ -10,7 +10,8 @@ const SequelizeStore = require('connect-session-sequelize')
 (session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5110;
+console.log(PORT);
 
 //Setting up Handlebards.js engine
 const bars = handlebars.create({helpers});
@@ -34,8 +35,16 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(_dirname, 'public')));
 
 
-app.use(routes);
 
-sequelize.sync({force: false}).then(() =>{
-    app.listen(PORT, () => console.log('Now listening'));
-});
+app.use(routes);
+routes.initialize(app);
+console.log(app);
+console.log(routes);
+
+// sync sequelize models to the database, then turn on the server
+sequelize.sync ({force: false}).then(() => {
+    app.listen(PORT, () => console.log(`App is now listening on port ${PORT}`));
+    console.log(`${PORT}`);
+   
+    
+  });
