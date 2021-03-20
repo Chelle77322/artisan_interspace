@@ -2,7 +2,7 @@
   "name": "artisan_interspace",
   "version": "1.0.0",
   "description": "A content management website for artists and art lovers alike",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
