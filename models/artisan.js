@@ -17,11 +17,7 @@ artisan.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        image: 
-        {
-            type: DataTypes.BLOB,
-            allowNull: false,
-        },
+        
         description:
         {
             type: DataTypes.STRING,
