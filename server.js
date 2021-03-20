@@ -10,7 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')
 (session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 5110;
+const port = process.env.PORT || 5110;
 
 //Setting up Handlebards.js engine
 const bars = handlebars.create({ helpers });
@@ -44,8 +44,8 @@ console.log(routes);
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync ({force: false}).then(() => {
-    app.listen(PORT, () => console.log(`App is now listening on port ${PORT}`));
-    console.log(`${PORT}`);
+    app.listen(port, () => console.log(`App is now listening on port ${port}`));
+    console.log(`${port}`);
    
     
   });
