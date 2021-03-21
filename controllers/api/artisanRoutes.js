@@ -13,7 +13,7 @@ try {
     result.status(400).json(error);
 }
 });
-router.delete('/:id', withAuth, async (request, result) => {
+router.delete('./user/:id', withAuth, async (request, result) => {
     try {
         const artisanData = await Artisan.destroy({
             where: {

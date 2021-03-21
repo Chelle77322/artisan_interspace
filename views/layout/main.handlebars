@@ -20,7 +20,7 @@
         <a href="../profile.handlebars">profile</a> |
         <button class="no-button" id="logout">logout</button>
         {{else}}
-        <a href="/login">login</a>
+        <a href="../login.handlebars">login</a>
         {{/if}}
       </nav>
     </header>
@@ -35,7 +35,7 @@
 
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
-  <script src="/js/logout.js"></script>
+  <script src="../.././public/jss/logout.js"></script>
   {{/if}}
 </body>
 

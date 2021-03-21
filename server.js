@@ -1,4 +1,3 @@
-
 const path = require('path');
 const express = require('express');
 const session = require ('express-session');
@@ -9,6 +8,7 @@ const helpers = require ('./utils/helpers');
 const sequelize = require ('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')
 (session.Store);
+console.log(SequelizeStore);
 
 const app = express();
 const port = process.env.PORT || 5110;
@@ -35,9 +35,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '/public')));
 
 console.log(path);
-
-
-
 app.use(routes);
 
 console.log(app);
@@ -46,7 +43,7 @@ console.log(routes);
 // sync sequelize models to the database, then turn on the server
 sequelize.sync ({force: false}).then(() => {
     app.listen(port, () => console.log(`App is now listening on port ${port}`));
-    console.log(`${port}`);
+    
    
     
   });
