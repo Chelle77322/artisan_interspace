@@ -25,17 +25,17 @@ router.post('/login', async (request, result) => {
              result.status(400).json({message: 'Incorrect email or password entered, please try again'});
              return;
          }
-    const validPassword = await userData.checkPassword (request.body.password);
+    const validPassword = userData.checkPassword(request.body.password);
 
     if (!validPassword){
-        result.status(400).json({message:'Incorrect email or password entered, please try again'});
+        result.status(400).json( {message:'Incorrect email or password entered, please try again'});
         return;
     }
     request.session.save(() => {
         request.session.user_id = userData.id;
         request.session.logged_in = true;
 
-        result.json({ user: userData, message: 'You are now logged in !'});
+        result.json({ User: userData, message: 'You are now logged in !'});
     });
 } catch (error) {
     result.status(400).json(error);

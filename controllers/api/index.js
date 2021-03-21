@@ -1,3 +1,5 @@
+//Defines the routes to be used for user and artisan
+
 const router = require('express').Router();
 const userRoutes = require ('./userRoutes');
 const artisanRoutes = require('./artisanRoutes');
