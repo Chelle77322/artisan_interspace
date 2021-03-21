@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {User} = require('../../models');
 
+//POST user data to page when logged in
 router.post('/', async (request, result)=>{
     try {
         const userData = await User.create(request.body);
@@ -26,6 +27,7 @@ router.post('/login', async (request, result) => {
              return;
          }
     const validPassword = userData.checkPassword(request.body.password);
+    console.log(validPassword);
 
     if (!validPassword){
         result.status(400).json( {message:'Incorrect email or password entered, please try again'});
@@ -35,7 +37,7 @@ router.post('/login', async (request, result) => {
         request.session.user_id = userData.id;
         request.session.logged_in = true;
 
-        result.json({ User: userData, message: 'You are now logged in !'});
+        result.json({ user: userData, message: 'You are now logged in !'});
     });
 } catch (error) {
     result.status(400).json(error);

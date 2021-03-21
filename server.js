@@ -32,13 +32,15 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(path);
+
+
 app.use(routes);
 
-console.log(app);
-console.log(routes);
+app.get('public', async (request, result)=>{
+    result.json("Welcome to the Artisan Interspace")
+});
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync ({force: false}).then(() => {
