@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
-
-require('dotenv').config({path: __dirname +`/../env`});
+require('dotenv').config();//{path: __dirname +`/../env`}
 require('config-json');
 
 let sequelize;
@@ -10,9 +9,7 @@ if (process.env.JAWSDB_URL){
     sequelize = new Sequelize(//Dialect error
       process.env.DB_NAME,
       process.env.DB_USER,
-      process.env.DB_PASSWORD, 
-      process.env.PORT,
-        
+      process.env.DB_PASSWORD,     
     {
         host:'localhost',
         dialect: 'mysql',//Dialect Error

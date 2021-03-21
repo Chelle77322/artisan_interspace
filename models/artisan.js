@@ -1,9 +1,9 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require ('../config/connection');
 
-class artisan extends Model {}
+class Artisan extends Model {}
 
-artisan.init(
+Artisan.init(
     {
         id:
         {
@@ -21,6 +21,7 @@ artisan.init(
         description:
         {
             type: DataTypes.STRING,
+            allowNull: false,
         },
         date_created:
         {
@@ -47,4 +48,5 @@ freezeTableName: true,
 underscored: true,
 modelName: 'artisan',
 });
-module.exports = artisan;
+console.log(sequelize);
+module.exports = Artisan;
