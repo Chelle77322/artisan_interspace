@@ -48,5 +48,4 @@ freezeTableName: true,
 underscored: true,
 modelName: 'artisan',
 });
-console.log(sequelize);
 module.exports = Artisan;
