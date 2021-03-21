@@ -15,18 +15,18 @@ try {
 });
 router.delete('./user/:id', withAuth, async (request, result) => {
     try {
-        const artisanData = await Artisan.destroy({
+        const ArtisanData = await Artisan.destroy({
             where: {
                 id: request.params.id,
                 user_id: request.session.user_id,
             },
         });
 
-    if(!artisanData){
+    if(!ArtisanData){
         result.status(404).json({message: 'No artisan found with this id!'});
         return;
     }
-    result.status(200).json(artisanData);
+    result.status(200).json(ArtisanData);
     } catch (error){
         result.status(500).json(error);
     }
