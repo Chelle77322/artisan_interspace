@@ -1,75 +1,135 @@
 const router = require ('express').Router();
-const { request } = require('express');
-const {Artisan, User} = require('../models');
+const sequelize = require('../config/connection')
+const {Artisan, User, } = require('../models');
 const withAuth = require('../utils/auth');
 
-
-router.get('/', async (request, result)=> {
-    try {
-        //Get everything and join it with the user session data
-        const artisanData = await Artisan.findAll({
-            include:[
-                {
-                    model: User,
-                    attributes: ['name'],
-                },
-            ],
-        });
-//Serialize data here
-const artisans = artisanData.map((artisan)=> artisan.get({plain: true}));
-//Put the serialized data and session flag into the template to be used for the homepage
-result.render('homepage', {
-    artisans,
-    logged_in: request.session.logged_in
-});
-    } catch (error){
-        result.status(500).json(error);
-    }
-});
-
-//gets artisan post based on id
-router.get('/artisan/:id', async (request, result) => {
-    try {
-        const artisanData = await Artisan.findByPk(request.params.id,
-            {
-              include:[
-                  {
-                      model: User,
-                      attributes: ['name'],
-                  },
-              ],  
-            });
-    const artisan = artisanData.get({ plain: true});
-    result.render('artisan', {
-        ...artisan,
-        logged_in: request.session.logged_in
-    });
-    } catch ( error)
-    { result.status(500).json(error); }
-});
- // withAUTH is using middleware to prevent access to the route from client
- router.get('/profile', withAuth, async (request, result) => {
-try {
-    //Locates logged in user based on session ID
-    const userData = await User.findByPk(request.session.user_id,
-    {
-        attributes: {exclude: ['password'] },
-        include: [{model: Artisan}],
-    });
-    const user = userData.get({plain: true});
-    result.render('profile', {
-        ...user,
-        logged_in: true
-    });
-} catch (error) {
-    result.status(500).json(error);
+router.get ('/', (request, result) => {
+Artisan.findAll({
+    attributes:[
+        'id',
+        'name',
+        'description',
+        'date_created',
+        'user_id'
+    ],
+    include:[{
+        model: artBoard,
+        attributes: ['id', 'art_id', 'user_id', 'date_created'],
+        include: { 
+            model: User,
+            attributes: ['user']
+        }
+    },
+{
+    model: User,
+    attribute: ['user']
 }
+]
+}).then(artboardData => {
+    const artboard = artboardData.map(artboard => artboard.get({
+       plain: true}));
+       result.render('homepage', {artboard, loggedIn: request.session.loggedIn });
+})
+.catch(error =>{
+    console.log(error);
+    result.status(500).json(error);
 });
-router.get('/login', (request, result)=> {
-    if (request.session.logged_in){
-        result.redirect('/profile');
+});
+
+router.get('/login', (request, result) => {
+    if (request.session.loggedIn){
+        result.redirect('/');
         return;
     }
     result.render('login');
+    });
+router.get('/signup', (request, result) =>{
+    result.render('signup');
+
 });
+router.get ('/artboard/:id', (request, result)=> {
+    artboard.findOne({
+        where: {
+            id: request.params.id
+        },
+        attributes: [
+            'id',
+            'name',
+            'description',
+            'date_created',
+            'user_id'
+        ],
+        include:[{
+            model: artBoard,
+            attributes: ['id', 'art_id', 'user_id', 'date_created'],
+            include: { 
+                model: User,
+                attributes: ['user']
+            }
+        },
+    {
+        model: User,
+        attribute: ['user']
+    }
+    ]
+    }).then (artboardData => {
+        if (!artboardData){
+            result.status(404).json({message: 'No artboard was found with this id'});
+            return
+        }
+        const artboard = artboardData.get({plain: true});
+        console.log(artboard);
+        result.render('single-artboard', {artboard, loggedIn: request.session.loggedIn });
+
+    }).catch(error => {
+        console.log(error);
+        result.status(500).json(error);
+    });
+});
+router.get('/artboard-comments', (request, result)=>{
+    Post.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'name',
+            'description',
+            'date_created'
+        ],
+        include: [{
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['user']
+                }
+            },
+            {
+                model: User,
+                attributes: ['user']
+            }
+        ]
+    })
+    .then(artboardData => {
+        if (!artboardData) {
+            result.status(404).json({ message: 'No post found with this id' });
+            return;
+        }
+        const artboard = artboardData.get({ plain: true });
+
+        res.render('artboard-comment', { artboard, loggedIn: request.session.loggedIn });
+    })
+    .catch(error => {
+        console.log(error);
+        result.status(500).json(error);
+    });
+});
+
 module.exports = router;
+
+
+});
+
+
+});
