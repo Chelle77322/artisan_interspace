@@ -1,0 +1,15 @@
+<div class = 'art_comments'>
+    {{#each this}}
+    <div class = 'card'>
+        <h3 class = 'card-header'></h3>
+        <section class = 'art_comment card-body'>
+            <div class = 'text'>
+                {{comment_text}}
+            </div>
+            <div class = "meta">
+                {{user.name}}, {{format date_created}}
+            </div>
+        </section>
+    </div>
+    {{/each}}
+</div>
