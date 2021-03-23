@@ -8,6 +8,6 @@ const artCommentRoutes = require ('./artCommentRoutes');
 
 router.use('/users', userRoutes);
 router.use('/artisans', artisanRoutes);
-router.user ('/art_comment', artCommentRoutes);
+router.use ('/art_comment', artCommentRoutes);
 
 module.exports = router;

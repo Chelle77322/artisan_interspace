@@ -21,7 +21,7 @@ router.get('/:id', (request, result)=>{
     })
 });
 
-router.put('/:id', withAuth, (request, result)=>{
+router.put('/:id', WithAuth, (request, result)=>{
     art_comment.update({
         comment_text: request.body.comment_text
     },{
@@ -38,7 +38,7 @@ router.put('/:id', withAuth, (request, result)=>{
     });
 });
 
-router.delete('/:id', withAuth, (request, result) => {
+router.delete('/:id', WithAuth, (request, result) => {
     art_comment.destroy({
         where:{id: request.params.id}
     }).thne(art_commentData => {
