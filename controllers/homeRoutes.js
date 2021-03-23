@@ -1,6 +1,6 @@
 const router = require ('express').Router();
 const sequelize = require('../config/connection')
-const {Artisan, User, } = require('../models');
+const {Artisan, User, ArtComment} = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get ('/', (request, result) => {
@@ -13,8 +13,8 @@ Artisan.findAll({
         'user_id'
     ],
     include:[{
-        model: artBoard,
-        attributes: ['id', 'art_id', 'user_id', 'date_created'],
+        model: ArtComment,
+        attributes: ['id', 'comment-text', 'user_id', 'date_created'],
         include: { 
             model: User,
             attributes: ['user']
@@ -60,7 +60,7 @@ router.get ('/artboard/:id', (request, result)=> {
             'user_id'
         ],
         include:[{
-            model: artBoard,
+            model: ArtComment,
             attributes: ['id', 'art_id', 'user_id', 'date_created'],
             include: { 
                 model: User,
@@ -98,8 +98,8 @@ router.get('/artboard-comments', (request, result)=>{
             'date_created'
         ],
         include: [{
-                model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                model: ArtComment,
+                attributes: ['id', 'comment_text', 'art_id', 'user_id', 'date_created'],
                 include: {
                     model: User,
                     attributes: ['user']
