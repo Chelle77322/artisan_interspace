@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Artisan, User} = require('../models');
-const withAuth = require('../utils/auth');
-router.get('/', withAuth, (request, result) => {
-    Post.findAll({
+const {Artisan, User, ArtComment} = require('../models');
+const WithAuth = require('../utils/auth');
+router.get('/', WithAuth, (request, result) => {
+    Artisan.findAll({
             where: {
                 user_id: request.session.user_id
             },
@@ -12,11 +12,10 @@ router.get('/', withAuth, (request, result) => {
                 'name',
                 'description',
                 'date_created',
-                'needed_funding'
             ],
             include: [{
-                    model: Artisan,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    model: ArtComment,
+                    attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
                     include: {
                         model: User,
                         attributes: ['user']
@@ -28,51 +27,51 @@ router.get('/', withAuth, (request, result) => {
                 }
             ]
         })
-        .then(dbPostData => {
-            const posts = dbPostData.map(post => post.get({ plain: true }));
-            result.render('dashboard', { posts, loggedIn: true });
+        .then(artboardData => {
+            const art = artboardData.map(art => art.get({ plain: true }));
+            result.render('artboard', {art, loggedIn: true });
         })
-        .catch(err => {
-            console.log(err);
-            result.status(500).json(err);
+        .catch(error => {
+            console.log(error);
+            result.status(500).json(error);
         });
 });
-router.get('/edit/:id', withAuth, (request, result) => {
-    Post.findOne({
+router.get('/edit/:id', WithAuth, (request, result) => {
+    Artisan.findOne({
             where: {
                 id: request.params.id
             },
             attributes: ['id',
-                'title',
-                'content',
-                'created_at'
+                'name',
+                'description',
+                'date_created'
             ],
             include: [{
                     model: User,
-                    attributes: ['username']
+                    attributes: ['user']
                 },
                 {
-                    model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    model: ArtComment,
+                    attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
                     include: {
                         model: User,
-                        attributes: ['username']
+                        attributes: ['user']
                     }
                 }
             ]
         })
-        .then(dbPostData => {
-            if (!dbPostData) {
-                result.status(404).json({ message: 'No post found with this id' });
+        .then(artboardData => {
+            if (!artboardData) {
+                result.status(404).json({ message: 'No art found with this id' });
                 return;
             }
 
-            const post = dbPostData.get({ plain: true });
-            result.render('edit-post', { post, loggedIn: true });
+            const art = artboardData.get({ plain: true });
+            result.render('edit-post', { art, loggedIn: true });
         })
-        .catch(err => {
-            console.log(err);
-            result.status(500).json(err);
+        .catch(error => {
+            console.log(error);
+            result.status(500).json(error);
         });
 })
 router.get('/new', (request, result) => {

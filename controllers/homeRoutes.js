@@ -1,7 +1,7 @@
-const router = require ('express').Router();
 const sequelize = require('../config/connection')
 const {Artisan, User, ArtComment} = require('../models');
-const withAuth = require('../utils/auth');
+const router = require ('express').Router();
+const WithAuth = require('../utils/auth');
 
 router.get ('/', (request, result) => {
 Artisan.findAll({
@@ -14,7 +14,7 @@ Artisan.findAll({
     ],
     include:[{
         model: ArtComment,
-        attributes: ['id', 'comment-text', 'user_id', 'date_created'],
+        attributes: ['id', 'comment-text', 'user_id'],
         include: { 
             model: User,
             attributes: ['user']
@@ -61,7 +61,7 @@ router.get ('/artboard/:id', (request, result)=> {
         ],
         include:[{
             model: ArtComment,
-            attributes: ['id', 'art_id', 'user_id', 'date_created'],
+            attributes: ['id', 'artisan_id', 'user_id', 'date_created'],
             include: { 
                 model: User,
                 attributes: ['user']
@@ -86,10 +86,10 @@ router.get ('/artboard/:id', (request, result)=> {
         result.status(500).json(error);
     });
 });
-router.get('/artboard-comments', (request, result)=>{
+router.get('/artboard_comments', (request, result)=>{
     Post.findOne({
         where: {
-            id: req.params.id
+            id: request.params.id
         },
         attributes: [
             'id',
