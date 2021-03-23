@@ -1,5 +1,6 @@
 const User = require('./user');
 const Artisan = require('./artisan');
+const ArtComment = require('./art_comment');
 
 User.hasMany(Artisan, {
     foreignKey: 'user_id',
@@ -9,4 +10,8 @@ User.hasMany(Artisan, {
 Artisan.belongsTo(User,{
     foreignKey: 'user_id'
 });
-module.exports = {User, Artisan};
+ArtComment.belongsTo(Artisan,{
+    foreignKey: 'artisan_id',
+    onDelete: 'CASCADE'
+})
+module.exports = {User, Artisan, ArtComment};
