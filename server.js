@@ -13,12 +13,12 @@ console.log(SequelizeStore);
 const app = express();
 const port = process.env.PORT || 5110;
 
-//Setting up Handlebards.js engine
+//Setting up Handlebars.js engine
 const bars = handlebars.create({ helpers });
 
 const sesh = {
     secret: 'SSH secret secret',
-    cookie: {},
+    cookie: {maxAge: 48000},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -34,12 +34,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+console.log(path.join(_dirname, 'public'));
 
 app.use(routes);
 
 app.get('public', async (request, result)=>{
     result.json("Welcome to the Artisan Interspace")
+    console.log(result);
 });
 
 // sync sequelize models to the database, then turn on the server

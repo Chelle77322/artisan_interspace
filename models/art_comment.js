@@ -16,7 +16,7 @@ ArtComment.init({
         }
     },
     user_id:{
-        type:DataTypes.INET,
+        type:DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: 'user',
