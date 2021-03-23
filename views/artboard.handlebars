@@ -1,0 +1,10 @@
+{{#if artisan.length}}
+<section>
+    <h2> Artisan Interspace</h2>
+    {{#each artisans as |artisan|}}
+    {{> artboard-postinfo artisan}}
+    {{/each}}
+</section>
+{{/if}}
+<button type ="submit" class = 'btn'><a class ="link" href = "/artboard/new">+ New Post</a></button>
+<script src = '../public/jss/add-artisan.js'></script>
