@@ -1,7 +1,8 @@
 const sequelize = require('../config/connection');
-const { User, Artisan} = require ('../models/index');
+const { User, Artisan, ArtComment} = require ('../models/index');
 const userData = require('./userData.json');
 const artisanData = require('./artisanData.json');
+const artComment = require('./artCommentData.json');
 
 
 const seedDatabase = async () => {
@@ -19,6 +20,15 @@ for (const artisan of artisanData) {
     });
     console.log(users);
   }
+  for (const artComment of artCommentData) {
+    await artComment.create({
+      ...ArtComment,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+    
+    });
+    console.log(users);
+  }
+
 
   process.exit(0);
 };

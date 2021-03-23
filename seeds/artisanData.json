@@ -1,23 +1,23 @@
 [
     {
       "name": "Acrylic Pour - Gelato",
-      "description": "An acrylic pour using a tree ring technique with colours of pink, turquoise and rose gold highlights",
-      "needed_funding": 100
+      "description": "An acrylic pour using a tree ring technique with colours of pink, turquoise and rose gold highlights"
+     
     },
     {
       "name": "Clouds of Sheep",
-      "description": "An abstract interpretation of Australia's wool industry",
-      "needed_funding": 200
+      "description": "An abstract interpretation of Australia's wool industry"
+     
     },
     {
       "name": "Night stopover",
-      "description": "Sponge painting of birds resting in a tree.",
-      "needed_funding": 120
+      "description": "Sponge painting of birds resting in a tree."
+      
     },
     {
         "name": "Acrylic Splatter",
-        "description": "Ombre splatter painting",
-        "needed_funding": 100
+        "description": "Ombre splatter painting"
+       
       }
 
   ]
