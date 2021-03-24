@@ -1,4 +1,4 @@
-const withAuth = (request, result, next) => {
+const WithAuth = (request, result, next) => {
     //Checks to see if user is logged in. If user is not logged in will be redirected to login 
 
     if (!ResultSetHeader.session.logged_in){
@@ -7,4 +7,4 @@ const withAuth = (request, result, next) => {
         next();
     }
 };
-module.exports = withAuth;
+module.exports = WithAuth;
