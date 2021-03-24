@@ -8,35 +8,33 @@
   <link rel="stylesheet" href="../../public/css/style.css">   
 </head>
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Buy My Art Work!</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="../profile.handlebars">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="../login.handlebars">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
+  <body>
+  <div class="wrapper">
+      <header class="hero">
+          <div>
+            <nav class"nav">
+                    <a class="link" href="/">Home</a>
+                    <a class="link" href="/artboard">Artboard</a>
+                    {{#if loggedIn}}
+                    <a class="link" href="/" id="logout">Logout</a>
+                    {{else}}
+                    <a class="link" href="/login">Login</a>
+                    {{/if}}
+                </nav>          
+          </div>
+
+          <h1 class="app-title"><i class="fab "></i>Artisan Interspace</h1>
+      </header>
+
+    <main>
       {{{ body }}}
     </main>
-    <footer>
-      
-    </footer>
   </div>
 
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="../.././public/jss/logout.js"></script>
-  {{/if}}
+    {{#if loggedIn}}
+    <script src="../../public/jss/logout.js"></script>
+    {{/if}}
+  
 </body>
 
 
