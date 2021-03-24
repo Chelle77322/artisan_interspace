@@ -104,9 +104,12 @@ router.delete('/:id', WithAuth, (request, result) => {
             return;
         }
         result.json(artboardData);
+        console.log(artboardData);
     }).catch(error => {
         console.log(error);
         result.status(500).json(error);
     });
 });
+console.log(router);
+
 module.exports = router;

@@ -34,7 +34,7 @@ router.post('/:id', WithAuth, (request, result)=>{
 
 });
 //PUT
-router.purge('/:id', WithAuth, (request, result) =>{
+router.put('/:id', WithAuth, (request, result) =>{
     ArtComment.update({
         comment_text: request.body.comment_text
 
@@ -62,9 +62,12 @@ router.delete('/:id', WithAuth, (request, result) => {
             return;
         }
         result.json(artcommentData);
+        console.log(artcommentData);
     }).catch(error =>{
         console.log(error);
         result.status(500).json(error);
     });
 });
+
+console.log(router);
 module.exports = router;

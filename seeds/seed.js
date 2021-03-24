@@ -2,7 +2,7 @@ const sequelize = require('../config/connection');
 const { User, Artisan, ArtComment} = require ('../models/index');
 const userData = require('./userData.json');
 const artisanData = require('./artisanData.json');
-const artComment = require('./artCommentData.json');
+const artCommentData = require('./artCommentData.json');
 
 
 const seedDatabase = async () => {
@@ -12,7 +12,7 @@ const users = await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
 });
-for (const artisan of artisanData) {
+for (const artisanData of artisanData) {
     await Artisan.create({
       ...Artisan,
       user_id: users[Math.floor(Math.random() * users.length)].id,
@@ -20,8 +20,8 @@ for (const artisan of artisanData) {
     });
     console.log(users);
   }
-  for (const artComment of artCommentData) {
-    await artComment.create({
+  for (const artCommentData of artCommentData) {
+    await ArtComment.create({
       ...ArtComment,
       user_id: users[Math.floor(Math.random() * users.length)].id,
     

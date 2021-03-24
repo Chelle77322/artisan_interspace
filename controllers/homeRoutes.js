@@ -14,7 +14,7 @@ Artisan.findAll({
     ],
     include:[{
         model: ArtComment,
-        attributes: ['id', 'comment-text', 'user_id'],
+        attributes: ['id', 'comment_text', 'user_id'],
         include: { 
             model: User,
             attributes: ['user']
@@ -24,7 +24,9 @@ Artisan.findAll({
     model: User,
     attribute: ['user']
 }
+
 ]
+
 }).then(artboardData => {
     const artboard = artboardData.map(artboard => artboard.get({
        plain: true}));
@@ -117,15 +119,16 @@ router.get('/artboard_comments', (request, result)=>{
             return;
         }
         const artboard = artboardData.get({ plain: true });
+        console.log(artboard);
 
-        res.render('artboard-comment', { artboard, loggedIn: request.session.loggedIn });
+        res.render('artboard', { artboard, loggedIn: request.session.loggedIn });
     })
     .catch(error => {
         console.log(error);
         result.status(500).json(error);
     });
 });
-
+console.log(router);
 module.exports = router;
 
 
