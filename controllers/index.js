@@ -11,5 +11,8 @@ router.use((request, result)=> {
     result.status(404).end();
 
 });
+console.log(router);
+console.log(artBoard);
+
 
 module.exports = router;

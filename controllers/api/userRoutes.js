@@ -124,6 +124,7 @@ router.put('/:id', (request, result) => {
             return;
         }
         result.json(userData);
+        console.log(userData);
     })
     .catch(error => {
         console.log(error);
@@ -146,6 +147,7 @@ router.delete('/:id', (request, result) => {
         result.status(500).json(error);
     });
 });
+
 module.exports = router;
 
   
