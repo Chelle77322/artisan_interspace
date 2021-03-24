@@ -1,6 +1,6 @@
 async function newFormHandler(event){
     event.preventDefault();
-    const name = document.querySelector('input[name="artisan-title"]').value;
+    const name = document.querySelector('input[name="artisan-name"]').value;
     const description = document.querySelector('input[name="description"]').value;
 
     const response = await fetch (`/api/artboard`, {

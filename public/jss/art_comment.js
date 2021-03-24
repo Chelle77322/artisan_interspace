@@ -5,7 +5,7 @@ async function ArtCommentFormHandler(event){
         window.location.toString().split('/').length -1 ];
     
         if (comment_text){
-            const response = await fetch ('/api/art_comments', {
+            const response = await fetch ('/api/art_comment', {
                 method: 'POST',
                 body: JSON.stringify({
                     artisan_id,

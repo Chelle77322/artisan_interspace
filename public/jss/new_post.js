@@ -2,7 +2,7 @@ async function newFormHandler(event) {
     event.preventDefault();
   
     const name = document.querySelector('input[name="artisan-name"]').value;
-    const descripion = document.querySelector('input[name="description"]').value;
+    const description = document.querySelector('input[name="description"]').value;
   
     const response = await fetch(`/api/posts`, {
       method: 'POST',
