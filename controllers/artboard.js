@@ -18,12 +18,12 @@ router.get('/', WithAuth, (request, result) => {
                     attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
                     include: {
                         model: User,
-                        attributes: ['user']
+                        attributes: ['name']
                     }
                 },
                 {
                     model: User,
-                    attributes: ['user']
+                    attributes: ['name']
                 }
             ]
         })
@@ -48,14 +48,14 @@ router.get('/edit/:id', WithAuth, (request, result) => {
             ],
             include: [{
                     model: User,
-                    attributes: ['user']
+                    attributes: ['name']
                 },
                 {
                     model: ArtComment,
                     attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
                     include: {
                         model: User,
-                        attributes: ['user']
+                        attributes: ['name']
                     }
                 }
             ]

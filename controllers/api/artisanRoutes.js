@@ -17,14 +17,14 @@ router.get('/', (request, result) => {
         ],
         include: [{
             model: User,
-            attributes: ['user']
+            attributes: ['name']
         },
         {
             model: ArtComment,
             attributes: ['id','comment_text','artisan_id', 'user_id', 'date_created'],
             include: {
                 model: User,
-                attributes: ['user']
+                attributes: ['name']
             }
         }]
     }).then(artboardData => result.json(artboardData.reverse())).catch(error => {
@@ -41,14 +41,14 @@ router.get('/:id', (request, result) => {
         attributes: ['id', 'description','name', 'date_created'],
         include:[{
             model: User,
-            attributes: ['user']
+            attributes: ['name']
         },
         {
             model: ArtComment,
             attributes: ['id','comment_text','artisan_id', 'date_created'],
             include: {
                 model: User,
-                attributes: ['user']
+                attributes: ['name']
             }
         }
     ]

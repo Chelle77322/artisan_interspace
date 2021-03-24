@@ -42,7 +42,7 @@ router.put('/:id', WithAuth, (request, result) =>{
         where:{id: request.params.id}
     }).then(artcommentData => {
         if (artcommentData){
-            result.status(404).json({message: 'No comment was found matching is id'});
+            result.status(404).json({message: 'No comment was found matching this id'});
             return;
         }
         result.json(artcommentData);

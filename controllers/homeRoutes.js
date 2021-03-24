@@ -17,12 +17,12 @@ Artisan.findAll({
         attributes: ['id', 'comment_text', 'user_id'],
         include: { 
             model: User,
-            attributes: ['user']
+            attributes: ['name']
         }
     },
 {
     model: User,
-    attribute: ['user']
+    attribute: ['name']
 }
 
 ]
@@ -66,12 +66,12 @@ router.get ('/artboard/:id', (request, result)=> {
             attributes: ['id', 'artisan_id', 'user_id', 'date_created'],
             include: { 
                 model: User,
-                attributes: ['user']
+                attributes: ['name']
             }
         },
     {
         model: User,
-        attribute: ['user']
+        attribute: ['name']
     }
     ]
     }).then (artboardData => {
@@ -104,12 +104,12 @@ router.get('/artboard_comments', (request, result)=>{
                 attributes: ['id', 'comment_text', 'art_id', 'user_id', 'date_created'],
                 include: {
                     model: User,
-                    attributes: ['user']
+                    attributes: ['name']
                 }
             },
             {
                 model: User,
-                attributes: ['user']
+                attributes: ['name']
             }
         ]
     })

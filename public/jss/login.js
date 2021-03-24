@@ -5,7 +5,7 @@ const email = document.querySelector('#email-login').value.trim();
 const password = document.querySelector('#password-login').value.trim();
 
 if (email && password){
-    //This sends a POST request to API endpoitn
+    //This sends a POST request to API endpoint
     const response = await fetch('/api/users/login', {
         method: 'POST',
         body: JSON.stringify({email, password}),
