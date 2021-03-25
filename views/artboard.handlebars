@@ -1,9 +1,11 @@
 {{#if artisans.length}}
 <section>
     <h2> Artisan Interspace</h2>
-    {{#each artisans as |artisan|}}
-    {{> artboard-postinfo artisan}}
-    {{/each}}
+   <ul class = "artboard">
+       {{#each artisan}}
+       <li>{{this}}</li>
+       {{/each}}
+   </ul>
 </section>
 {{/if}}
 <button type ="submit" class = 'btn'><a class ="link" href = "/artboard/new">+ New Post</a></button>

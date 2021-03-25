@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buy My Art Work!</title>
   <link rel="stylesheet" href="../../public/css/jass.css">
-  <link rel="stylesheet" href="../../public/css/style.css">   
+  <link rel="stylesheet" href= "../../public/css/style.css"/>   
 </head>
 <body>
   <body>
@@ -14,11 +14,11 @@
           <div>
             <nav class"nav">
                     <a class="link" href="/">Home</a>
-                    <a class="link" href="/artboard">Artboard</a>
+                    <a class="link" href="./artboard">Artboard</a>
                     {{#if loggedIn}}
                     <a class="link" href="/" id="logout">Logout</a>
                     {{else}}
-                    <a class="link" href="/login">Login</a>
+                    <a class="link" href="./login">Login</a>
                     {{/if}}
                 </nav>          
           </div>
@@ -28,6 +28,7 @@
 
     <main>
       {{{ body }}}
+     {{log body}}
     </main>
   </div>
 
