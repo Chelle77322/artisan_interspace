@@ -1,9 +1,11 @@
 {{#each artisans as |artisan|}}
-<div class="artisan">
+<div class="main">
     <div class="art">
         <div class="date">Created by {{artisan.user.name}} on {{format_date artisan.date_created}}</div>
+        {{log artisan.name}}
         <h2>{{artisan.name}}</h2>
     </div>
     <div class="artisan-content">{{artisan.description}}</div>
+    {{log artisan.description}}
 </div>
 {{/each}}
