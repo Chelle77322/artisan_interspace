@@ -1,11 +1,39 @@
-{{#each artisans as |artisan|}}
-<div class="main">
-    <div class="art">
-        <div class="date">Created by {{artisan.user.name}} on {{format_date artisan.date_created}}</div>
-        {{log artisan.name}}
-        <h2>{{artisan.name}}</h2>
-    </div>
-    <div class="artisan-content">{{artisan.description}}</div>
-    {{log artisan.description}}
-</div>
+<div class = "row">
+    <div class = "col-md-6">
+        <div class = "container">
+            <div class = "row">
+                <h2 class = "h1-centre"><span class = "decorate">Art</span>isan <span class = "decorate">Inter</span>space</h2>
+            </div>
+ <div class="art">
+     <table class = "table-art" style = "margin:auto">
+         <thead>
+             <tr>
+                 <th align = "center"><abbr title = "date_created">Date Created</abbr></th>
+                 <th align = "center"><abbr title ="artisan-name">Artist Name</abbr></th>
+                   <th align = "center"><abbr title ="artisan-description">Description of Work</abbr></th>
+             </tr>
+         </thead>
+         <tbody>
+    {{#each artisans as |artisan|}}
+<tr>
+    <th>{{id}}</th>
+    <td>{{artisan-name}}</td>
+    <td>{{artisan-content}}</td>
+    <td>{{artisan-description}}</td>
+    <td>{{date_created}}</td>
+
+</tr>
 {{/each}}
+</tbody>
+
+     </table>
+ </div>
+        </div>
+    </div>
+</div>
+
+<script src="jss/logout.js"></script>
+<script src="jss/login.js"></script>
+<script src="jss/profile.js"></script>
+<script src="js/new_post.js"></script>
+

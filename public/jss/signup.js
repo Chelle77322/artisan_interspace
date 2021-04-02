@@ -1,13 +1,13 @@
 const signupFormHandler = async(event) =>{
     event.preventDefault();
 
-    const ll = document.querySelector.bind(document);
+    const artSign = document.querySelector.bind(document);
 
-    const name = ll('#name-signup').value.trim();
-    const password = ll('#password-signup').value.trim();
-    const email = ll('#email-signup').value.trim();
+    const name = artSign('#name-signup').value.trim();
+    const password = artSign('#password-signup').value.trim();
+    const email = artSign('#email-signup').value.trim();
     if (name && password && email){
-        const response = await fetch ('/api/users',{
+        const response = await fetch ('/api/homeRoutes',{
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -22,6 +22,7 @@ const signupFormHandler = async(event) =>{
         } else {
             alert(response.statusText);
             console.log(error);
+            console.log(response);
 
         }
     }
