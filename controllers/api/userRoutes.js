@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {User, Artisan, ArtComment} = require('../../models');
+
 router.post('/', async (request, result)=> {
-try{
+try {
     const user = await User.create(request.body);
     request.session.save(()=>{
         (request.session.user_id = user.id),
@@ -16,10 +17,13 @@ try{
 
 //Finding User after login
 router.post('/login', async (request, result) => {
+   
     User.findOne({
             where: {
                 email: request.body.email
+               
             }
+           
         }).then(userData => {
             if (!userData) {
                 result.status(400).json({ message: 'No user found with that username!' });

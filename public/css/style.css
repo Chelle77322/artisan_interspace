@@ -9,22 +9,27 @@ body{
  
 }
 .artisan{
-  background-color:  #5d473a;
+  background-color:purple;
 
 }
 .art{
-  background-color: #ac7654
+  background-color:orangered
 }
 .container{
+  background-color: blue;
 
 }
 .row{
+  background-color: yellowgreen;
 
 }
 .col-md-6{
+background-color: grey;
+
 
 }
 .table-art{
+  background-color:white;
 
 }
 /*Style settings for all headers, fonts and text decorations for consistency*/
@@ -63,18 +68,22 @@ body{
 }
 /*Style settings for all cards for consistency*/
 .card-body{
+  background-color: aqua;
 
 }
 .card-header{
+  background-color: antiquewhite;
 
 }
 /*Style settings for all forms for consistency*/
 .form-group{
+  background-color: blueviolet
 
 }
 .form-input{
-
+background-color: yellow
 }
 .form-label{
+  background-color:red;
 
 }

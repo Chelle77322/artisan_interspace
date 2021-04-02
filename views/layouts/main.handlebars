@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href= "/css/style.css"/>   
 </head>
-<body>
+
   <body>
   <div class="wrapper">
       <header class="hero">
@@ -23,16 +23,17 @@
                     <a class = "link" href ="./signup">Artist Sign Up</a>
                 </nav>          
           </div>
+          </div>
       </header>
 
-    <main>
+    <main class = "wtf">
       {{{ body }}}
     </main>
-  </div>
-
-    {{#if loggedIn}}
-    <script src="/jss/logout.js"></script>
+ 
+   {{#if loggedIn}}
+    <script src="../../public/jss/logout.js"></script>
     {{/if}}
+ 
   
 </body>
 
