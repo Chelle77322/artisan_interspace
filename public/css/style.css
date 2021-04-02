@@ -15,3 +15,66 @@ body{
 .art{
   background-color: #ac7654
 }
+.container{
+
+}
+.row{
+
+}
+.col-md-6{
+
+}
+.table-art{
+
+}
+/*Style settings for all headers, fonts and text decorations for consistency*/
+.span.decorate{
+  font-family: 'Yellowtail', 'sans-serif';
+  color:#ae9a64;
+  font-size: 65px;
+
+}
+.h1-centre{
+  font-family: 'Wallpoet', 'sans-serif';
+  font-size: 45px;
+  text-align: center;
+
+}
+.h1{
+  font-family: 'Wallpoet', 'sans-serif';
+  font-size: 45px;
+
+}
+.h2{
+  font-family: 'Wallpoet', 'sans-serif';
+  font-size: 35px;
+
+}
+.h3{
+  font-family: 'Wallpoet', 'sans-serif';
+  font-size: 28px;
+
+}
+.p{
+  font-family: 'Wallpoet', 'sans-serif';
+  font-size: 14px;
+  text-align: justify;
+
+}
+/*Style settings for all cards for consistency*/
+.card-body{
+
+}
+.card-header{
+
+}
+/*Style settings for all forms for consistency*/
+.form-group{
+
+}
+.form-input{
+
+}
+.form-label{
+
+}

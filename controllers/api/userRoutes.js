@@ -1,5 +1,50 @@
 const router = require('express').Router();
 const {User, Artisan, ArtComment} = require('../../models');
+router.post('/', async (request, result)=> {
+try{
+    const user = await User.create(request.body);
+    request.session.save(()=>{
+        (request.session.user_id = user.id),
+        (request.session.logged_in = true);
+    });
+    result.status(200).json(user);
+} catch(error){
+    result.status(400).json(error);
+}
+
+});
+
+//Finding User after login
+router.post('/login', async (request, result) => {
+    User.findOne({
+            where: {
+                email: request.body.email
+            }
+        }).then(userData => {
+            if (!userData) {
+                result.status(400).json({ message: 'No user found with that username!' });
+                return;
+            }
+            const validPassword = userData.checkPassword(request.body.password);
+
+            if (!validPassword) {
+                result.status(400).json({ message: 'Incorrect password entered, try again' });
+                return;
+            }
+            request.session.save(() => {
+
+                (request.session.user_id = userData.id),
+                (request.session.name = userData.name),
+                (request.session.loggedIn = true);
+
+                result.json({ user: userData, message: 'You are now logged in!' });
+            });
+        })
+        .catch(error => {
+            console.log(error);
+            result.status(500).json(error);
+        });
+});
 
 //GET all user data
 router.get('/', async (request, result) => {
@@ -71,38 +116,7 @@ router.post('/', (request, result) => {
     result.status(500).json(error);
 });
 });
- //Finding User after login
- router.post('/login', (request, result) => {
-    User.findOne({
-            where: {
-                name: req.body.name
-            }
-        }).then(userData => {
-            if (!userData) {
-                result.status(400).json({ message: 'No user found with that username!' });
-                return;
-            }
-            const validPassword = userData.checkPassword(request.body.password);
-
-            if (!validPassword) {
-                result.status(400).json({ message: 'Incorrect password entered, try again' });
-                return;
-            }
-            request.session.save(() => {
-
-                request.session.user_id = userData.id;
-                request.session.name = userData.name;
-                request.session.loggedIn = true;
-
-                result.json({ user: userData, message: 'You are now logged in!' });
-            });
-        })
-        .catch(error => {
-            console.log(error);
-            result.status(500).json(error);
-        });
-});
-
+ 
 router.post ('/logout',(request, result) => {
     if(request.session.loggedIn){
         request.session.destroy(() =>{

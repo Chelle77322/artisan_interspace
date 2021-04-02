@@ -1,9 +1,10 @@
-const loginFormHandler = async (event) =>{
+const loginFormHandler = async (event) => {
     event.preventDefault();
 //Collects values from login form
 const email = document.querySelector('#email-login').value.trim();
 const password = document.querySelector('#password-login').value.trim();
 
+console.log(email, password)
 if (email && password){
     //This sends a POST request to API endpoint
     const response = await fetch('/api/users/login', {
@@ -34,7 +35,7 @@ const signupFormHandler = async (event) => {
          headers: { 'Content-Type': 'application/json'},
      });
     if (response.ok){
-        document.location.replace('/profile');
+        document.location.replace('./profile');
     } else{
         alert(response.statusText);
     }

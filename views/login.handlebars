@@ -1,13 +1,23 @@
-<div class = 'card'>
+<div class ="row">
+    <div class = "col-md-6">
     <h3 class = 'card-header'> Artist Login</h3>
     <form id = 'login-form' class = "card-body">
-        <label class = "form-label" for ="user-login"> Email</label>
-        <input id = "name-login" type="text" autofocus="true" class = 'form-input'/>
+        <div class = "form-group">
+        <label class = "form-label" for ="email-login"> Email</label>
+        <input id = "email-login" type="text" autofocus="true" class = 'form-input'/>
+        </div>
+        <div class = "form-group">
         <label class ='form-label' for = 'password-login'> Password</label>
         <input id ='password-login' type='password'autofocus ='true' class='form-input'/>
+        </div>
+        <div class = "form-group">
         <button type = 'submit'class ='btn'>Login</button>
-        <a class = 'login-link' href = "./signup"> Sign up as an Artist</a>
+         <a class = 'login-link' href = "/signup"> Log in instead</a>
+        </div>
+        
     </form>
 </div>
+</div>
+
 <script src = "/jss/login.js"></script>
 <script src = "/jss/profile.js"></script>
