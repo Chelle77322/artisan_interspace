@@ -1,13 +1,18 @@
-async function signupFormHandler(event){
+const signupFormHandler = async(event) =>{
     event.preventDefault();
-    const user = document.querySelector('#user-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
-    if (user && password){
+
+    const ll = document.querySelector.bind(document);
+
+    const name = ll('#name-signup').value.trim();
+    const password = ll('#password-signup').value.trim();
+    const email = ll('#email-signup').value.trim();
+    if (name && password && email){
         const response = await fetch ('/api/users',{
             method: 'POST',
             body: JSON.stringify({
-                user,
-                password
+                name: name,
+                password: password,
+                email: email
             }),
             headers: {'Content-Type': 'application/json'}
         });
@@ -16,8 +21,9 @@ async function signupFormHandler(event){
             document.location.replace('/artboard');
         } else {
             alert(response.statusText);
+            console.log(error);
 
         }
     }
 }
-document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);
+document.querySelector('#signup-form').addEventListener('submit', signupFormHandler)
