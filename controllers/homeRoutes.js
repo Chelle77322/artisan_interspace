@@ -4,7 +4,7 @@ const {Artisan, User, ArtComment} = require('../models');
 const WithAuth = require('../utils/auth');
 router.get('/', (request, result)=>{
     try {
-        result.render('artboard');
+        result.render('homepage');
         result.status(200);
     } catch (error) {
         result.status(500).json(error);
@@ -47,7 +47,7 @@ Artisan.findAll({
 
 router.get('/login', (request, result) => {
    if (request.session.loggedIn){
-       result.redirect('/artboard');
+       result.redirect('/homepage');
         return;
     }
     result.render('login');
@@ -99,7 +99,7 @@ router.get ('/artboard/:id', (request, result)=> {
 router.get('/artboard_comments', (request, result)=>{
     Post.findOne({
        where: {
-            id: request.params.id
+            id: request.body.params.id
         },
         attributes: [
             'id',
@@ -129,7 +129,7 @@ router.get('/artboard_comments', (request, result)=>{
         const artboard = artboardData.get({ plain: true });
         console.log(artboard);
 
-        result.render('artboard', { artboard, loggedIn: request.session.loggedIn });
+        result.render('homepage', { artboard, loggedIn: request.session.loggedIn });
     }).catch(error => {
         console.log(error);
         result.status(500).json(error);

@@ -33,7 +33,7 @@ background-color: grey;
 
 }
 /*Style settings for all headers, fonts and text decorations for consistency*/
-.span.decorate{
+.decorate{
   font-family: 'Yellowtail', 'sans-serif';
   color:#ae9a64;
   font-size: 65px;

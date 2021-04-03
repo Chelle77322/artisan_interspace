@@ -4,14 +4,14 @@
  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buy My Art Work!</title>
-  <link rel="stylesheet" href="/css/jass.css">
+  {{!--Stylesheets--}}
+  <link rel="stylesheet" href="/css/jass.css"/>
   <link rel="stylesheet" href= "/css/style.css"/>   
 </head>
-
+{{!--Start of main html rendering--}}
   <body>
   <div class="wrapper">
       <header class="hero">
-          <div>
             <nav class"nav">
                     <a class="link" href="/">Home</a>
                     <a class="link" href="./artboard">Artboard</a>
@@ -21,18 +21,17 @@
                     <a class="link" href="./login">Login</a>
                     {{/if}}
                     <a class = "link" href ="./signup">Artist Sign Up</a>
-                </nav>          
-          </div>
-          </div>
+                </nav>                  
       </header>
+      </div>
 
-    <main class = "wtf">
+    <main>
       {{{ body }}}
     </main>
  
-   {{#if loggedIn}}
-    <script src="../../public/jss/logout.js"></script>
-    {{/if}}
+  
+    <script src="/jss/logout.js"></script>
+    
  
   
 </body>

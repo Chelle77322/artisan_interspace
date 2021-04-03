@@ -6,10 +6,10 @@ const homeRoutes = require('./homeRoutes.js');
 router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
 
-//router.use((request, result)=> {
-   // result.status(404).end();
+router.use((request, result)=> {
+    result.status(404).end();
 
-//});
+});
 
 
 

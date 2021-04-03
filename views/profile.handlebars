@@ -2,25 +2,25 @@
   <div class="col-auto">
     <h2>Welcome,
       {{#with user}}
-      {{name}}
+      {{name}} {{email}}
       {{/with}}
     </h2>
   </div>
 </div>
 
-<div class="row mt-4">
+<div class="row">
   <div class="col-md-6">
-    <h3>New Artisan Post:</h3>
+    <h3 class = "h3">New Artisan Post:</h3>
 
-    <form class="form new-project-form">
+    <form class="new-art-form">
       <div class="form-group">
         <label for="artisan-name">Artisan name:</label>
         <input class="form-input" type="text" id="artisan-name" name="artisan-name" />
       </div>
       
       <div class="form-group">
-        <label for="artisan-desc">description:</label>
-        <textarea class="form-input" id="artisan-desc" name="artisan-desc"></textarea>
+        <label for="artisan-description">Description:</label>
+        <textarea class="form-input" id="artisan-desc" name="artisan-description"></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -33,8 +33,8 @@
     <h3>Latest Artwork:</h3>
 
     {{#each artisans as |artisan|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-6">
         <h4><a href="/artisan/{{artisan.id}}">{{artisan.name}}</a></h4>
       </div>
       <div class="col-md-4">
@@ -46,4 +46,4 @@
   {{/if}}
 </div>
 
-<script src="../public/jss/profile.js"></script>
+<script src="/jss/profile.js"></script>
