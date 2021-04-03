@@ -4,6 +4,7 @@ const {User, Artisan, ArtComment} = require('../../models');
 router.post('/', async (request, result)=> {
 try {
     const user = await User.create(request.body);
+    console.log(user)
     request.session.save(()=>{
         (request.session.user_id = user.id),
         (request.session.logged_in = true);
@@ -16,7 +17,7 @@ try {
 });
 
 //Finding User after login
-router.post('/login', async (request, result) => {
+router.post('/login/:email', async (request, result) => {
    
     User.findOne({
             where: {
@@ -109,7 +110,6 @@ router.post('/', (request, result) => {
 
     }).then(userData => {
     request.session.save(() => {
-        request.session.user_id = userData.id;
         request.session.name = userData.name;
         request.session.email = userData.email;
         request.session.loggedIn = true;

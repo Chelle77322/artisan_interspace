@@ -1,12 +1,13 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
+    const profile = document.querySelector.bind(document);
   
-    const name = document.querySelector('#artisan-name').value.trim();
+    const name = profile('#artisan-name').value.trim();
   
-    const description = document.querySelector('#artisan-desc').value.trim();
+    const description = profile('#artisan-desc').value.trim();
   
     if (name && description) {
-      const response = await fetch(`/api/artisans`, {
+      const response = await fetch('/api/artisans', {
         method: 'POST',
         body: JSON.stringify({ name, description }),
         headers: {
@@ -15,7 +16,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('./profile');
+        document.location.replace('/profile');
       } else {
         alert('Failed to create art work');
       }

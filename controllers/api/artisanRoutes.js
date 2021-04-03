@@ -4,7 +4,7 @@ const WithAuth = require('../../utils/auth');
 
 //Gets all artisan data
 router.get('/', (request, result) => {
-    console.log('*=*=*=*=*=*=*=*=*=');
+    
     Artisan.findAll({
         attributes:[
             'id',
@@ -13,7 +13,7 @@ router.get('/', (request, result) => {
             'date_created'
         ],
         order:[
-            ['date_created', 'DESC']
+            ['date_created', 'description']
         ],
         include: [{
             model: User,

@@ -2,6 +2,8 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const {Artisan, User, ArtComment} = require('../../models');
 const WithAuth = require('../../utils/auth');
+//Gets all artisan posts based on user authenication
+
 router.get('/', WithAuth, (request, result) => {
     Artisan.findAll({
             where: {
@@ -36,7 +38,7 @@ router.get('/', WithAuth, (request, result) => {
             result.status(500).json(error);
         });
 });
-router.get('/edit/:id', WithAuth, (request, result) => {
+router.get('/:id', WithAuth, (request, result) => {
     Artisan.findOne({
             where: {
                 id: request.params.id
@@ -67,15 +69,15 @@ router.get('/edit/:id', WithAuth, (request, result) => {
             }
 
             const art = artboardData.get({ plain: true });
-            result.render('edit-post', { art, loggedIn: true });
+            result.render('artboard', { art, loggedIn: true });
         })
         .catch(error => {
             console.log(error);
             result.status(500).json(error);
         });
 })
-router.get('/new', (request, result) => {
-    result.render('new-post');
+router.get('/art_post', (request, result) => {
+    result.render('art_post');
 });
 
 

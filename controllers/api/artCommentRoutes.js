@@ -1,5 +1,5 @@
 const router = require ('express'). Router();
-const {ArtComment} = require('../../models');
+const {ArtComment , User, Artisan} = require('../../models');
 const WithAuth = require('../../utils/auth');
 
 router.get('/', (request, result) =>{
@@ -33,7 +33,7 @@ router.post('/:id', WithAuth, (request, result)=>{
 })
 
 });
-//PUT
+//Putting a comment on the board
 router.put('/:id', WithAuth, (request, result) =>{
     ArtComment.update({
         comment_text: request.body.comment_text

@@ -15,7 +15,7 @@ async function artPostHandler(event){
         headers: {'Content-Type': 'application/json'}
     });
     if (response.ok){
-       document.location.replace('/homepage');
+       document.location.replace('/artboard');
     }else{
        alert(response.statusText);
     }
