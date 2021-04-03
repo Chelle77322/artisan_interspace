@@ -1,8 +1,10 @@
 const router = require ('express').Router();
+
 const {Artisan, User, ArtComment} = require('../models');
 
 const WithAuth = require('../utils/auth');
-router.get('/', (request, result)=>{
+
+router.get('/', (request, result) => {
     try {
         result.render('homepage');
         result.status(200);
@@ -10,9 +12,20 @@ router.get('/', (request, result)=>{
         result.status(500).json(error);
     }
 });
+//This is where you sign up as an artist route
+router.get('/signup', async ( request, result) =>{
+    try{
+        const userData = await User.findAll({
+            attributes:['id', 'name', 'email', 'password']
+        });
+        result.render('signup')
+    }catch (error){
+        result.status(500).json(error)
+    }
 
+});
 
-router.get ('/:id', (request, result) => {
+router.get ('/artisan/:id', (request, result) => {
 Artisan.findAll({
    attributes:[
       'id',
@@ -44,19 +57,15 @@ Artisan.findAll({
     result.status(500).json(error);
 });
 });
-
+//Gets information after login
 router.get('/login', (request, result) => {
    if (request.session.loggedIn){
-       result.redirect('/homepage');
+       result.redirect('/artboard');
         return;
     }
     result.render('login');
     });
-router.get('/signup', (request, result) =>{
-    result.render('signup');
-
-});
-
+//Gets artboard associated with user id after login
 router.get ('/artboard/:id', (request, result)=> {
   artboard.findOne({
         where: {
@@ -89,7 +98,7 @@ router.get ('/artboard/:id', (request, result)=> {
         }
         const artboard = artboardData.get({plain: true});
         console.log(artboard);
-        result.render('single-artboard', {artboard, loggedIn: request.session.loggedIn });
+        result.render('artboard', {artboard, loggedIn: request.session.loggedIn });
 
     }).catch(error => {
         console.log(error);
