@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {Artisan, User, ArtComment} = require('../../models');
 const WithAuth = require('../../utils/auth');
-
+//ALL POSTS HERE
 //Posting all art 
 router.post('/artboard', async(request, result) => {
     try{
@@ -38,7 +38,9 @@ router.post('/artboard', async(request, result) => {
   
    
      
-//Returns all art work associated with a particular user ID
+
+//ALL GETS ARE HERE
+// Gets and returns all art work associated with a particular user ID
 router.get('/artboard/:id', WithAuth, async (request, result) => {
     try {
         const artBoard = await Artisan.findOne({
@@ -101,6 +103,41 @@ catch (error){
 }
     
 });
+//Gets all artwork posted on site
+router.get('/artboard', async (request, result) => {
+    try{
+        const artBoard = await Artisan.findAll({
+            attributes:[
+                'id',
+                'name',
+                'description',
+                'date_created'
+            ],
+            order:[
+                ['date_created', 'description']
+            ],
+            include: [{
+                model: User,
+                attributes: ['name']
+            },
+            {
+                model: ArtComment,
+                attributes: ['id','comment_text','artisan_id', 'user_id', 'date_created'],
+                include: {
+                    model: User,
+                    attributes: ['name']
+                }
+            }]
+        });
+        result.status(200).json(artBoard);
+    }
+    catch(error){
+        result.status(500).json(error);
+    }
+
+    });
+
+//ALL PUTS ARE HERE
 //Putting the post up after form submit by user
 router.put('/artboard/:id', WithAuth, async (request, result) => {
 try{
@@ -112,7 +149,7 @@ try{
         image:request.body.image,
         date_created: request.body.date_created,    
     });
-    const art = artData.map(art => art.get({ plain: true }));
+    const art = artPost.map(art => art.get({ plain: true }));
     result.render('artboard', {art, logged_in: true });
 
 }
@@ -122,8 +159,24 @@ catch(error){
 }
 
 });
-
-
-
+//ALL DELETES ARE HERE
+//Deletes a single post using DESTROY
+router.delete('/artboard/:id', WithAuth, async (request, result) => {
+    try {
+        const artBoard = await Artisan.destroy({
+            where: {id: request.params.id}
+        });
+        if(!artBoard){
+            result.status(404).json({message: "No art was found that matched the user id"});
+            return;
+        }
+        result.status(200).json(artBoard);
+        console.log(artBoard);
+    }
+    catch(error){
+        result.status(500).json(error);
+        console.log(error);
+    }
+});
 
 module.exports = router;
