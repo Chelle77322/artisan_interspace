@@ -12,6 +12,11 @@ Artisan.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        image:{
+            type: DataTypes.STRING,
+            data: DataTypes.BLOB("long"),
+         },
+      
         name:
         {
             type: DataTypes.STRING,
