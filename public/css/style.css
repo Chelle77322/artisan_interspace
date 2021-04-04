@@ -1,13 +1,59 @@
 body{
-  background-image: url('./images/background.jpg');
-  background-size: cover;
+ 
+  background-image:linear-gradient(#baaa91, #f0eee9);
   padding: 0%;
-  margin: auto,
+  margin: auto;
 }
 .wrapper{
-  background-color:  #5d473a;
+
+  background-image:linear-gradient(#baaa91, #f0eee9);
+  padding: 0%;
+  margin: auto;
+  margin-top:20px;
  
 }
+.hero{
+  padding:5px;
+  position:inherit;
+  font-size: 48px;
+  font-family: 'Wallpoet', 'sans-serif';
+  color: #5d473a;
+
+}
+.nav{
+  padding:5px;
+  position:fixed;
+  margin-left:15px;
+  max-width: 95%;
+  max-height: 25%;
+  font-size: 25px;
+  font-family: 'Wallpoet';
+  color: #5d473a;
+  text-align: right;
+
+}
+.top-bar,.top-bar-right,.top-bar-left, .menu{
+  color:#39373b;
+  font-size: 16px;
+  font-family: 'Wallpoet',sans-serif;
+ 
+}
+.sidebar {
+  padding: 5px;
+  margin-left: 15px;
+  margin : auto;
+  margin-top:0px;
+  height: fit-content;
+  width:fit-content;
+
+
+}
+img {
+  max-width: 30%;
+  height: auto;
+  display: inline-flex;
+}
+
 .artisan{
   background-color:purple;
 
@@ -16,15 +62,23 @@ body{
   background-color:orangered
 }
 .container{
-  background-color: blue;
+  padding:10px;
+  margin-top:0px;
+  margin-left:300px;
+  background-color: #39373b;
+  max-height: fit-content;
 
 }
 .row{
-  background-color: yellowgreen;
+ padding:10px;
+ margin-top:0px;
+ margin-left:300px;
 
 }
 .col-md-6{
-background-color: grey;
+  padding: 10px;
+  position:inherit;
+  background-image:linear-gradient(to bottom right, #ae9a64, #5d473a);
 
 
 }
@@ -40,27 +94,32 @@ background-color: grey;
 
 }
 .h1-centre{
+  padding-top: 15px;
   font-family: 'Wallpoet', 'sans-serif';
-  font-size: 45px;
+  font-size: 40px;
   text-align: center;
 
 }
 .h1{
+  padding-top:15px;
   font-family: 'Wallpoet', 'sans-serif';
-  font-size: 45px;
+  font-size: 40px;
 
 }
 .h2{
+  padding-top:15px;
   font-family: 'Wallpoet', 'sans-serif';
   font-size: 35px;
 
 }
 .h3{
+  padding-top: 10px;
   font-family: 'Wallpoet', 'sans-serif';
   font-size: 28px;
 
 }
 .p{
+  padding-top:5px;
   font-family: 'Wallpoet', 'sans-serif';
   font-size: 14px;
   text-align: justify;
@@ -68,16 +127,19 @@ background-color: grey;
 }
 /*Style settings for all cards for consistency*/
 .card-body{
-  background-color: aqua;
+  padding: 10px;
+  position:inherit;
+ background-image:linear-gradient(to bottom right, #ae9a64, #5d473a);
 
 }
 .card-header{
-  background-color: antiquewhite;
+ 
 
 }
 /*Style settings for all forms for consistency*/
 .form-group{
-  background-color: blueviolet
+ 
+  
 
 }
 .form-input{
