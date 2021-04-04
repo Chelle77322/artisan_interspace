@@ -1,15 +1,16 @@
-<div class = 'art_comments'>
+<div class = 'col-md-6'>
     {{#each this}}
-    <div class = 'card'>
-        <h3 class = 'card-header'></h3>
+    <div class = 'card-body'>
+        <h3 class = 'h3'><span class = "small">C</span>omments</h3>
         <section class = 'art_comment card-body'>
             <div class = 'text'>
                 {{comment_text}}
             </div>
-            <div class = "meta">
+            <div class = "form-group">
                 {{user.name}}, {{format_date date_created}}
             </div>
         </section>
     </div>
     {{/each}}
 </div>
+<script src = "/jss/art_comment.js"></script>

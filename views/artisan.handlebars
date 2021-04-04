@@ -1,4 +1,6 @@
-<!--Setting up the artisan handlebar to display each post-->
+{{!--Setting up the artisan handlebar to display each post--}}
+{{!-- Registering a partial handlebar--}}
+Handlebars.registerPartial('artisanPartial', {{prefix}});
 <div class="row">
     <div class="col-md-6">
         <div class="welcome">
@@ -7,10 +9,10 @@
         </div>
     </div>
 </div>
-{{!--Start of main section of employee page--}}
+{{!--This is where the pictures are page--}}
 <div class="row">
     <div class="col-md-6">
-        <h3 class="h3">Artist Profile/h3>
+        <h3 class="h3">Artist Profile</h3>
         <div class="col-md-6"> 
                 <table class="art-table" style="margin:auto" align="center">
                     <thead>
@@ -20,7 +22,7 @@
                         <tr>
                              {{!--Displays latest art work in the table--}}
         {{#if artisan.length}}
-        <div class="col-md-6 project-list">
+        <div class="col-md-6">
             {{#each artisans as |artisan|}}
                             
                             <td>
