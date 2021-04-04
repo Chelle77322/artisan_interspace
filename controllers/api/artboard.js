@@ -2,8 +2,8 @@ const router = require('express').Router();
 const {Artisan, User, ArtComment} = require('../../models');
 const WithAuth = require('../../utils/auth');
 
-//Posting art based on user authenication
-router.post('/', WithAuth,  async(request, result) => {
+//Posting all art 
+router.post('/artboard', async(request, result) => {
     try{
         const artBoard = await Artisan.findAll({
             ...request.body, user_id: request.session.user_id,
@@ -39,11 +39,11 @@ router.post('/', WithAuth,  async(request, result) => {
    
      
 //Returns all art work associated with a particular user ID
-router.get('/:id', WithAuth, async (request, result) => {
+router.get('/artboard/:id', WithAuth, async (request, result) => {
     try {
         const artBoard = await Artisan.findOne({
             where: {
-                user_id: request.params.user_id
+                id: request.params.id
             },
             attributes: ['id',
             'name',
@@ -80,9 +80,49 @@ router.get('/:id', WithAuth, async (request, result) => {
     }
     
 });
-router.get('/art_post', (request, result) => {
-    result.render('art_post');
+//Creating a post associated with a user via WithAuth
+
+router.get('/artboard/:id', WithAuth, async (request, result) => {
+    try {
+    const artData = await Artisan.create({
+        name:request.body.name,
+        description: request.body.description,
+        user_id: request.session.user_id,
+        image:request.body.image,
+        date_created: request.body.date_created
+    
+    });
+    const art = artData.map(art => art.get({ plain: true }));
+    result.render('artboard', {art, logged_in: true });
+}
+catch (error){
+    result.status(400).json(error);
+    console.log(error);
+}
+    
 });
+//Putting the post up after form submit by user
+router.put('/artboard/:id', WithAuth, async (request, result) => {
+try{
+    const artPost = await Artisan.update({
+        where:{id:request.params.id},
+        
+        name: request.body.name,
+        description: request.body.description,
+        image:request.body.image,
+        date_created: request.body.date_created,    
+    });
+    const art = artData.map(art => art.get({ plain: true }));
+    result.render('artboard', {art, logged_in: true });
+
+}
+catch(error){
+    result.status(400).json(error);
+    console.log(error);
+}
+
+});
+
 
 
 

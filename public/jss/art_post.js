@@ -1,23 +1,27 @@
-async function artPostHandler(event){
+async function artPosting(event){
    event.preventDefault();
    const artPost = document.querySelector.bind(document);
-    const name = artPost('input[name="artisan-name"]').value.trim();
-    console.log(name);
-    const description = artPost('input[name="description"]').value.trim();
-    console.log(description);
+    const name = artPost('#artisan-name').value.trim();
+    const image = artPost('#artisan_image');
+    const description = artPost('#artisan-description').value.trim();
+    const date = artPost('#artisan-date_created').value.trim();
+  
 
     const response = await fetch ('/api/artboard', {
         method: 'POST',
         body: JSON.stringify({
            name : name,
-            description: description
+            description: description,
+            user_id: user_id,
+            image: image,
+            date_created: date_created,
       }),
         headers: {'Content-Type': 'application/json'}
     });
     if (response.ok){
-       document.location.replace('/artboard');
+       document.location.replace('./artboard');
     }else{
        alert(response.statusText);
     }
 };
-document.querySelector('#new-art-form').addEventListener('submit', artPostHandler);
+document.querySelector('#art_post').addEventListener('submit', artPosting);

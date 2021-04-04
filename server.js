@@ -4,6 +4,7 @@ const session = require ('express-session');
 const handlebars = require('express-handlebars');
 const routes = require ('./controllers');
 const helpers = require ('./utils/helpers');
+const multer = require('multer');
 
 const sequelize = require ('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')
@@ -40,13 +41,22 @@ app.use(routes);
 
 app.get('public', async (request, result)=>{
     result.json("Welcome to the Artisan Interspace")
-    console.log(result);
+   
 });
+//Setting up multer package for image upload
+const multerStorage = multer.diskStorage({
+    destination: (request, file, store) => {
+      store(path.join(_dirname,'public'));
+    },
+
+    filename: (request, file,store) => {
+      const ext = file.mimetype.split('/')[1];
+      store(path.join(_dirname, 'public'), `user-${request.user.id}-${Date.now()}.${ext}`);
+    }
+  });
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync ({force: false}).then(() => {
-    app.listen(port, () => console.log(`App is now listening on port ${port}`));
-    
-   
+    app.listen(port, () => console.log(`App is now listening on port ${port}`)); 
     
   });

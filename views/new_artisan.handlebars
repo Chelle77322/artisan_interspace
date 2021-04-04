@@ -1,30 +1,28 @@
-<div class="card">
-    <h3 class="card-header">Create New Art</h3>
-    <form class="card-body new-post-form" id="new-post-form">
-        <label for="post-title" class="form-label">Name</label>
-        <input type="text" id="artisan-name" name="artisan-name" class="form-input" />
+<div class="col-md-6">
+    <h3 class="h3">Create New Art</h3>
+    <form class ="card-body" id="art_post">
+      <div class = "form-group">
+        <label for="artisan_name" class="form-label">Name</label>
+        <input type="text" id="artisan-name" name="artisan-name" class="form-input"  autofocus = "true"/>
+    </div>
+    <div class = "file-upload">
+      <label for = "artisan_image" class = "form-label">ArtWork</label>
+      <input type = "file" id = "artisan_image" name = "artisan_image">
+    </div>
+      <div class = "form-group">
+        <label for="artisan_description" class="form-label">Description</label>
+        <input type="text" id="artisan-description" name="artisan-description" class="form-input"  autofocus = "true"/>
+      </div>
 
+        <div class = "form-group">
+        <label for="artisan_date_created" class="form-label">Date Created</label>
+        <input type="datetime" id="artisan-date_created" name="artisan-date_created" class="form-input"  autofocus = "true"/>
+      </div>
 
-        <label class="form-label" for="content">Description</label>
-        <input id="description" name="description" class="form-input" />
+      
 
-        <button type="submit" class="btn">Create</button>
+        <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
 
 <script src="/jss/art_post.js"></script>
-{{!--<form class="new-art-form">
-      <div class="form-group">
-        <label for="artisan-name">Artist Name:</label>
-        <input class="form-input" type="text" place holder ="Please enter artist name" id="artisan-name" name="artisan-name" />
-      </div>
-      
-      <div class="form-group">
-        <label for="artisan-description">Description:</label>
-        <textarea class="form-input" id="artisan-description" placeholder" Please enter description" name="artisan-description"></textarea>
-      </div>
-      
-        <button type="submit" class="btn btn-primary">Create Artwork</button>
-      
-    </form>
-  </div>--}}
