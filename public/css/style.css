@@ -1,15 +1,13 @@
 body{
- 
-  background-image:linear-gradient(#baaa91, #f0eee9);
+background-image:linear-gradient(to bottom left,#5d473a, #baaa91 ) ;
   padding: 0%;
   margin: auto;
 }
 .wrapper{
-
-  background-image:linear-gradient(#baaa91, #f0eee9);
+  background-image:linear-gradient(to bottom, #302813,#baaa91);
   padding: 0%;
   margin: auto;
-  margin-top:20px;
+  margin-top:0px;
  
 }
 .hero{
@@ -20,16 +18,12 @@ body{
   color: #5d473a;
 
 }
-.nav{
-  padding:5px;
-  position:fixed;
-  margin-left:15px;
-  max-width: 95%;
-  max-height: 25%;
-  font-size: 25px;
+.link{
+  font-size: 16px;
   font-family: 'Wallpoet';
-  color: #5d473a;
+  color:#ffeee9;
   text-align: right;
+
 
 }
 .top-bar,.top-bar-right,.top-bar-left, .menu{
@@ -40,82 +34,119 @@ body{
 }
 .sidebar {
   padding: 5px;
-  margin-left: 15px;
+  margin-left: 5px;
   margin : auto;
   margin-top:0px;
-  height: fit-content;
+  height:auto;
   width:fit-content;
-
-
+  float: left;
+  position: fixed;
 }
 img {
   max-width: 30%;
   height: auto;
   display: inline-flex;
+  -moz-box-shadow: 5px 7px 9px rgba(119, 97, 24, 0.5);
+-webkit-box-shadow: 5px 7px 9px rgba(0,0,0,.5);
+box-shadow: 5px 7px 9px rgba(0,0,0,.5);
 }
 
-.artisan{
-  background-color:purple;
-
-}
-.art{
-  background-color:orangered
-}
 .container{
-  padding:10px;
-  margin-top:0px;
-  margin-left:300px;
-  background-color: #39373b;
-  max-height: fit-content;
+  padding:5px;
+  margin-top:5px;
+  margin-bottom: 5px;
+  float:right;
+  display:block;
+  width: 85%;
+  height: 85%;
+  background-image: linear-gradient(to bottom,#baaa91, #ae9a64);
 
 }
 .row{
- padding:10px;
- margin-top:0px;
- margin-left:300px;
+ padding:5px;
+ margin-top:5px;
+ margin-left: 100px;
+position: inherit;
+width:75%;
+height:75%;
 
 }
 .col-md-6{
-  padding: 10px;
+  padding: 5px;
+  margin-top:5px;
   position:inherit;
-  background-image:linear-gradient(to bottom right, #ae9a64, #5d473a);
-
-
+  background-image:linear-gradient(to bottom right,#baaa91,#ae9a64);
+  width: 75%;
+  height: 75%;
+  -moz-box-shadow: 5px 7px 9px rgba(119, 97, 24, 0.5);
+  -webkit-box-shadow: 5px 7px 9px rgba(0,0,0,.5);
+  box-shadow: 5px 7px 9px rgba(0,0,0,.5);
+}
+.gallery{
+  padding: 5px;
+  margin-top:5px;
+  float:right;
+  margin-left:200px;
+  position: relative;
+ 
+  background-image:linear-gradient(to bottom right,#ae9a64,#39373b);
+ 
+  -moz-box-shadow: 5px 7px 9px rgba(119, 97, 24, 0.5);
+  -webkit-box-shadow: 5px 7px 9px rgba(0,0,0,.5);
+  box-shadow: 5px 7px 9px rgba(0,0,0,.5);
 }
 .table-art{
-  background-color:white;
+  padding: 5px;
+  margin-top:5px;
+  float:right;
+  margin-left:200px;
+  position: relative;
+ 
+  background-image:linear-gradient(to bottom right,#ae9a64,#39373b);
+ 
+  -moz-box-shadow: 5px 7px 9px rgba(119, 97, 24, 0.5);
+  -webkit-box-shadow: 5px 7px 9px rgba(0,0,0,.5);
+  box-shadow: 5px 7px 9px rgba(0,0,0,.5);
 
 }
 /*Style settings for all headers, fonts and text decorations for consistency*/
 .decorate{
   font-family: 'Yellowtail', 'sans-serif';
   color:#ae9a64;
-  font-size: 65px;
+  font-size: 75px;
+
+}
+.small{
+  font-family: 'Yellowtail', 'sans-serif';
+  color:#5d473a;
+  font-size: 30px;
 
 }
 .h1-centre{
   padding-top: 15px;
   font-family: 'Wallpoet', 'sans-serif';
-  font-size: 40px;
+  font-size: 50px;
   text-align: center;
+  color: #ffeee9;
 
 }
 .h1{
   padding-top:15px;
   font-family: 'Wallpoet', 'sans-serif';
-  font-size: 40px;
+  font-size: 50px;
 
 }
 .h2{
   padding-top:15px;
   font-family: 'Wallpoet', 'sans-serif';
   font-size: 35px;
-
+  color: #ffeee9;
 }
 .h3{
   padding-top: 10px;
   font-family: 'Wallpoet', 'sans-serif';
-  font-size: 28px;
+  font-size: 20px;
+  color:#ffeee9;
 
 }
 .p{
@@ -132,20 +163,11 @@ img {
  background-image:linear-gradient(to bottom right, #ae9a64, #5d473a);
 
 }
-.card-header{
- 
 
-}
-/*Style settings for all forms for consistency*/
-.form-group{
- 
-  
-
-}
-.form-input{
-background-color: yellow
-}
 .form-label{
-  background-color:red;
+  padding-top: 10px;
+  font-family: 'Wallpoet', 'sans-serif';
+  font-size: 20px;
+  color:#ffeee9;
 
 }
