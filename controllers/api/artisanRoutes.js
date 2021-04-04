@@ -3,7 +3,7 @@ const {Artisan, ArtComment, User} = require('../../models');
 const WithAuth = require('../../utils/auth');
 
 //Gets all artisan data
-router.get('/', (request, result) => {
+router.get('/artisan', (request, result) => {
     
     Artisan.findAll({
         attributes:[
@@ -33,7 +33,7 @@ router.get('/', (request, result) => {
     });
 });
 //Find one artisan post based on id
-router.get('/:id', (request, result) => {
+router.get('/artisan/:id', (request, result) => {
     Artisan.findOne({
         where:{
             id: request.params.id
@@ -65,7 +65,7 @@ router.get('/:id', (request, result) => {
 });
 
 //Creating a post using WithAuth
-router.post('/', WithAuth, (request,result) => {
+router.post('/artisan/:id', WithAuth, (request,result) => {
     Artisan.create({
         name: request.body.name,
         description: request.body.description,
@@ -77,7 +77,7 @@ router.post('/', WithAuth, (request,result) => {
     });
 });
 //Putting post data on the board - id driven
-router.put('/:id', WithAuth, (request,result) => {
+router.put('/artisan/:id', WithAuth, (request,result) => {
     Artisan.update({
         name: request.body.name,
         description: request.body.description
@@ -95,7 +95,7 @@ router.put('/:id', WithAuth, (request,result) => {
     });
 });
 //Deletes a post with DESTROY
-router.delete('/:id', WithAuth, (request, result) => {
+router.delete('/artisan/:id', WithAuth, (request, result) => {
     Artisan.destroy({
         where: {id: request.params.id}
     }).then(artboardData => {

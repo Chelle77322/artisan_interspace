@@ -94,7 +94,7 @@ router.get('/', async (request, result) => {
     }     
 });
 //Returns one user based on id
-router.get('/:id', async (request, result) => {
+router.get('/profile/:id', async (request, result) => {
     const userData = await User.findOne ({
         attributes: {exclude: ['[password']},
             where: { id: request.params.id},
@@ -130,7 +130,7 @@ include: {
 });  
        
 //Updates an individual user based on their hooks
-router.put('/:id', async (request, result) => {
+router.put('/users/:id', async (request, result) => {
     try{ 
         const userData = await User.update(request.body, {individualHooks:true,
             where: {id: request.params.id}});
@@ -150,7 +150,7 @@ router.put('/:id', async (request, result) => {
 });
 
 //Deletes the user and all associated data
-router.delete('/:id', async (request, result) => {
+router.delete('/users/:id', async (request, result) => {
  try{ 
      const userData = await User.destroy(
          {where:{
