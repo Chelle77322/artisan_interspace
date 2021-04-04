@@ -3,7 +3,7 @@ const {Artisan, User, ArtComment} = require('../models');
 
 const WithAuth = require('../utils/auth');
 
-router.get('/', (request, result) => {
+router.get('/',async (request, result) => {
     try {
         result.render('homepage');
         result.status(200);
@@ -62,7 +62,7 @@ router.get ('/artboard/:id', async(request, result) => {
 });
 
 //Gets information after login
-router.get('/login', (request, result) => {
+router.get('/login', async (request, result) => {
     try{
    if (request.session.logged_in){
        result.redirect('/');
@@ -163,8 +163,8 @@ router.get('/artboard_comment', async (request, result) => {
             result.status(404).json({ message: 'No comments where found with this id' });
             return;
           }
-          const comment = artComment.get({plain:true});
-        result.render('artboard', {comment, logged_in: request.session.logged_in});    
+          const comments = artComment.get({plain:true});
+        result.render('artboard', {comments, logged_in: request.session.logged_in});    
         
     }
     catch (error){
