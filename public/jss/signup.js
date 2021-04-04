@@ -18,7 +18,7 @@ const signupArtist = async(event) =>{
         });
         if (response.ok){
             console.log('success' + response.ok);
-            document.location.replace('/homepage');
+            document.location.replace('./profile');
         } else {
             alert(response.statusText);
             console.log(error);

@@ -4,7 +4,7 @@ const newFormHandler = async (event) => {
   
     const name = profile('#artisan-name').value.trim();
   
-    const description = profile('#artisan-desc').value.trim();
+    const description = profile('#artisan-description').value.trim();
   
     if (name && description) {
       const response = await fetch('/api/artisans', {
@@ -39,11 +39,4 @@ const newFormHandler = async (event) => {
     }
   };
   
-  document
-    .querySelector('.new-artisan-form')
-    .addEventListener('submit', newFormHandler);
-  
-  document
-    .querySelector('.artisan-list')
-    .addEventListener('click', delButtonHandler);
-  
+  console.log("You got here at least");

@@ -1,4 +1,4 @@
-const loginFormHandler = async (event) => {
+const artistLogin = async (event) => {
     event.preventDefault();
 //Collects values from login form
 const login = document.querySelector.bind(document);
@@ -17,11 +17,12 @@ if (email && password){
 
     if(response.ok){
         //On Success will go to profile page of user
-        document.location.replace('/profile');
+        document.location.replace('./profile');
     } else {
         alert(response.statusText);
     }
     }
 };
+document.querySelector('#login-form').addEventListener('submit', artistLogin)
 
-
+console.log("Logged in I think");

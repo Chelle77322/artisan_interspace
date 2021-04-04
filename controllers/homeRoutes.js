@@ -59,8 +59,8 @@ Artisan.findAll({
 });
 //Gets information after login
 router.get('/login', (request, result) => {
-   if (request.session.loggedIn){
-       result.redirect('/artboard');
+   if (request.session.logged_in){
+       result.redirect('/profile');
         return;
     }
     result.render('login');
