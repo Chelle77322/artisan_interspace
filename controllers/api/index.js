@@ -2,12 +2,12 @@
 
 const router = require('express').Router();
 const userRoutes = require ('./userRoutes');
-const artboard = require('./artboard');
+const artBoardRoutes = require('./artBoardRoutes');
 const artCommentRoutes = require ('./artCommentRoutes');
 
 
 router.use('/users', userRoutes);
-router.use('/artboard', artboard);
+router.use('/artboard', artBoardRoutes);
 router.use ('/art_comment', artCommentRoutes);
 
 
