@@ -1,4 +1,4 @@
-const newFormHandler = async (event) => {
+const profileCreator = async (event) => {
     event.preventDefault();
     const profile = document.querySelector.bind(document);
   
@@ -40,3 +40,4 @@ const newFormHandler = async (event) => {
   };
   
   console.log("You got here at least");
+console.log(profileCreator);
