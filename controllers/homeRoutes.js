@@ -12,7 +12,7 @@ router.get('/',async (request, result) => {
     }
 });
 //This is where you sign up as an artist route
-router.get('/signup', async ( request, result) =>{
+router.get('/signup', async ( request, result) => {
     try{
         const userData = await User.findAll({
             attributes:['id', 'name', 'email', 'password']

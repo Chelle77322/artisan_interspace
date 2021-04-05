@@ -32,6 +32,8 @@ router.post('/signup', async (request, result) => {
             (request.session.loggedIn = true);
         });
         result.status(200).json(userData);
+       
+      
     } catch (error){
         result.status(400).json(error);
 

@@ -11,15 +11,15 @@ const signupArtist = async(event) => {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
-                password: password,
-                email: email
+                password,
+                email
             }),
             headers: {'Content-Type': 'application/json'},
         });
         if (response.ok){
-            document.location.replace('/artboard');
+            document.location.replace('/');
         } else {
-            alert(response.statusText);
+            alert(response);
             console.log(error);
             console.log(response.statusText);
 
