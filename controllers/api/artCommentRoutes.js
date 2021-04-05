@@ -69,5 +69,5 @@ router.delete('/:id', WithAuth, (request, result) => {
     });
 });
 
-console.log(router);
+
 module.exports = router;

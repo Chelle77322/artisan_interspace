@@ -3,7 +3,7 @@ const {Artisan, User, ArtComment} = require('../../models');
 const WithAuth = require('../../utils/auth');
 //ALL POSTS HERE
 //Posting all art 
-router.post('/artboard', async(request, result) => {
+router.post('/', async(request, result) => {
     try{
         const artBoard = await Artisan.findAll({
             ...request.body, user_id: request.session.user_id,
@@ -36,9 +36,6 @@ router.post('/artboard', async(request, result) => {
        
     });
   
-   
-     
-
 //ALL GETS ARE HERE
 // Gets and returns all art work associated with a particular user ID
 router.get('/artboard/:id', WithAuth, async (request, result) => {
@@ -72,8 +69,8 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
             result.status(404).json({ message: 'No art has been found associated with this user' });
             return;
         } else{
-            const art = artBoard.map(art => art.get({ plain: true }));
-            result.render('artboard', {art, logged_in: true });
+            const artBoard = artBoard.map(artBoard => art.get({ plain: true }));
+            result.render('artboard', {artBoard, logged_in: true });
         }
 
     } catch (error){
@@ -86,7 +83,7 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
 
 router.get('/artboard/:id', WithAuth, async (request, result) => {
     try {
-    const artData = await Artisan.create({
+    const artBoard = await Artisan.create({
         name:request.body.name,
         description: request.body.description,
         user_id: request.session.user_id,
@@ -94,8 +91,8 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
         date_created: request.body.date_created
     
     });
-    const art = artData.map(art => art.get({ plain: true }));
-    result.render('artboard', {art, logged_in: true });
+    const artBoard = artBoard.map(artBoard => artBoard.get({ plain: true }));
+    result.render('artboard', {artBoard, logged_in: true });
 }
 catch (error){
     result.status(400).json(error);
@@ -141,7 +138,7 @@ router.get('/artboard', async (request, result) => {
 //Putting the post up after form submit by user
 router.put('/artboard/:id', WithAuth, async (request, result) => {
 try{
-    const artPost = await Artisan.update({
+    const artBoard = await Artisan.update({
         where:{id:request.params.id},
         
         name: request.body.name,
@@ -149,8 +146,8 @@ try{
         image:request.body.image,
         date_created: request.body.date_created,    
     });
-    const art = artPost.map(art => art.get({ plain: true }));
-    result.render('artboard', {art, logged_in: true });
+    const artboard = artBoard.map(artBoard => artBoard.get({ plain: true }));
+    result.render('artboard', {artBoard, logged_in: true });
 
 }
 catch(error){

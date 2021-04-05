@@ -12,7 +12,7 @@ const users = await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
 });
-for (const artisanData of artisanData) {
+for (const artBoard of artBoard) {
     await Artisan.create({
       ...Artisan,
       user_id: users[Math.floor(Math.random() * users.length)].id,
@@ -20,7 +20,7 @@ for (const artisanData of artisanData) {
     });
     
   }
-  for (const artCommentData of artCommentData) {
+  for (const artcommentData of artcommentData) {
     await ArtComment.create({
       ...ArtComment,
       user_id: users[Math.floor(Math.random() * users.length)].id,
