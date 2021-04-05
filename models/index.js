@@ -4,17 +4,18 @@ const ArtComment = require('./art_comment');
 
 User.hasMany(Artisan, {
     foreignKey: 'user_id',
+    onDelete: 'CASCADE',
     
 });
 
 Artisan.belongsTo(User,{
     foreignKey: 'user_id',
-    onDelete: 'CASCADE'
+   
 });
 
 ArtComment.belongsTo(User,{
     foreignKey: 'user_id',
-    onDelete: 'CASCADE'
+   
 });
 ArtComment.belongsTo(Artisan,{
 foreignKey: 'artisan_id',
