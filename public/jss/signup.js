@@ -7,7 +7,7 @@ const signupArtist = async(event) => {
     const password = artSign('#user_password').value.trim();
     const email = artSign('#user_email').value.trim();
     if (name && password && email){
-        const response = await fetch ('/api/users',{
+        const response = await fetch ('/api/users/signup',{
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -17,7 +17,7 @@ const signupArtist = async(event) => {
             headers: {'Content-Type': 'application/json'},
         });
         if (response.ok){
-            document.location.replace('/profile');
+            document.location.replace('/artboard');
         } else {
             alert(response.statusText);
             console.log(error);
@@ -26,4 +26,4 @@ const signupArtist = async(event) => {
         }
     }
 };
-//document.querySelector('#signup-form').addEventListener('submit', signupArtist)
+document.querySelector('#signup-form').addEventListener('submit', signupArtist)

@@ -18,7 +18,7 @@ try {
 //#### All Sign Up and Login Routes are here####//
 //Sign up new user here - POST METHOD
 
-router.post('/', async (request, result) => {
+router.post('/signup', async (request, result) => {
     try{
         const userData = await  User.create({
             name: request.body.name,
@@ -39,11 +39,12 @@ router.post('/', async (request, result) => {
 });
 
 //User login - POST METHOD
-router.post('/login', async (request, result) => {
+router.post('/login', async (request, result,) => {
   try {
       const userData = await User.findOne({
         where: {
-            email: request.body.email   
+            email: request.body.email,
+            password: request.body.password
         },
   });
         if (!userData) {

@@ -13,11 +13,11 @@ if (email && password){
             password: password}),
         headers: { 'Content-Type': 'application/json'},
     });
-    console.log(response)
+
 
     if(response.ok){
         //On Success will go to profile page of user
-        document.location.replace('./profile');
+        result.render('profile',{user});
     } else {
         alert(response.statusText);
     }
