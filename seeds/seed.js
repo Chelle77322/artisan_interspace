@@ -18,7 +18,7 @@ for (const artisanData of artisanData) {
       user_id: users[Math.floor(Math.random() * users.length)].id,
     
     });
-    console.log(users);
+    
   }
   for (const artCommentData of artCommentData) {
     await ArtComment.create({
@@ -26,7 +26,7 @@ for (const artisanData of artisanData) {
       user_id: users[Math.floor(Math.random() * users.length)].id,
     
     });
-    console.log(users);
+   
   }
 
 
