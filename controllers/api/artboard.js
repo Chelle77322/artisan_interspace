@@ -28,8 +28,8 @@ router.post('/', async(request, result) => {
             ],
         });
         result.status(200).json(artBoard);
-        const art = artBoard.map(art => art.get({ plain: true }));
-        result.render('artboard', {art, logged_in: true });
+        const artBoard = artBoard.map(artBoard => artBoard.get({ plain: true }));
+        result.render('artBoard', {artBoard, logged_in: true });
     } catch(error){
         result.status(400).json(error);
     }
@@ -146,7 +146,7 @@ try{
         image:request.body.image,
         date_created: request.body.date_created,    
     });
-    const artboard = artBoard.map(artBoard => artBoard.get({ plain: true }));
+    const artBoard = artBoard.map(artBoard => artBoard.get({ plain: true }));
     result.render('artboard', {artBoard, logged_in: true });
 
 }
