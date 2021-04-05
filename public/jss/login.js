@@ -1,4 +1,4 @@
-const artistLogin = async (event) => {
+const Login = async (event) => {
     event.preventDefault();
 //Collects values from login form
 const login = document.querySelector.bind(document);
@@ -23,6 +23,7 @@ if (email && password){
     }
     }
 };
-document.querySelector('#login-form').addEventListener('submit', artistLogin)
+
 
 console.log("Logged in I think");
+document.querySelector('#login-form').addEventListener('submit', Login);

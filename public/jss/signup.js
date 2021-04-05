@@ -26,4 +26,4 @@ const signupArtist = async(event) => {
         }
     }
 };
-document.querySelector('#signup-form').addEventListener('submit', signupArtist)
+//document.querySelector('#signup-form').addEventListener('submit', signupArtist)
