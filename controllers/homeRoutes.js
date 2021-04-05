@@ -18,14 +18,14 @@ router.get('/signup', async ( request, result) =>{
             attributes:['id', 'name', 'email', 'password']
         });
         const artist = userData.map(user => user.get({plain:true}))
-        result.render("signup", {user});
+        result.render("signup", {artist});
     }catch (error){
         result.status(500).json(error)
     }
 
 });
 
-//Gets all Artisan with ids
+//Gets all Artisan Interspace posts with ids
 router.get ('/artboard/:id', async(request, result) => {
     try{
         const artists = await Artisan.findAll({
@@ -51,7 +51,7 @@ router.get ('/artboard/:id', async(request, result) => {
           
           ]
         });
-        const art = artist.map(art => art.get({plain:true}));
+        const art = artists.map(art => art.get({plain:true}));
         result.render('artboard', {art, logged_in:request.session.logged_in});
     }
     catch (error){
@@ -68,7 +68,7 @@ router.get('/login', async (request, result) => {
        result.redirect('/');
         return;
     }
-    const userData = await User.findbyPK(request.session.user_id, {
+    const userData = await User.findOne(request.session.user_id, {
         include:[
             {
                 model: Artisan,
@@ -83,7 +83,7 @@ router.get('/login', async (request, result) => {
     });
     const user = userData.get({plain: true});
     result.status(200).json(userData);
-    result.render('user', {
+    result.render('artboard', {
         ...user,  logged_in: request.session.logged_in,
     });
 } catch(error){
