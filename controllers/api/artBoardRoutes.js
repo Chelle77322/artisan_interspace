@@ -1,11 +1,11 @@
-const router = require('express').Router();
-const {Artisan, User, ArtComment} = require('../../models');
-const WithAuth = require('../../utils/auth');
+var router = require('express').Router();
+var {Artisan, User, ArtComment} = require('../../models');
+var WithAuth = require('../../utils/auth');
 //ALL POSTS HERE
 //Posting all art 
 router.post('/', async(request, result) => {
     try{
-        const artBoard = await Artisan.findAll({
+        var artboard = await Artisan.findAll({
             ...request.body, user_id: request.session.user_id,
             attributes: [
                 'id',
@@ -27,9 +27,9 @@ router.post('/', async(request, result) => {
                 }
             ],
         });
-        result.status(200).json(artBoard);
-        const artBoard = artBoard.map(artBoard => artBoard.get({ plain: true }));
-        result.render('artBoard', {artBoard, logged_in: true });
+        result.status(200).json(artboard);
+        var artboard = artboard.map(artboard => artboard.get({ plain: true }));
+        result.render('artboard', {artboard, logged_in: true });
     } catch(error){
         result.status(400).json(error);
     }
@@ -40,7 +40,7 @@ router.post('/', async(request, result) => {
 // Gets and returns all art work associated with a particular user ID
 router.get('/artboard/:id', WithAuth, async (request, result) => {
     try {
-        const artBoard = await Artisan.findOne({
+        var artboard = await Artisan.findOne({
             where: {
                 id: request.params.id
             },
@@ -63,14 +63,14 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
             }
         ],
         });
-        result.status(200).json(artBoard);
+        result.status(200).json(artboard);
       
-        if (!artBoard) {
+        if (!artboard) {
             result.status(404).json({ message: 'No art has been found associated with this user' });
             return;
         } else{
-            const artBoard = artBoard.map(artBoard => art.get({ plain: true }));
-            result.render('artboard', {artBoard, logged_in: true });
+            var artboard = artboard.map(artboard => art.get({ plain: true }));
+            result.render('artboard', {artboard, logged_in: true });
         }
 
     } catch (error){
@@ -83,7 +83,7 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
 
 router.get('/artboard/:id', WithAuth, async (request, result) => {
     try {
-    const artBoard = await Artisan.create({
+    var artboard = await Artisan.create({
         name:request.body.name,
         description: request.body.description,
         user_id: request.session.user_id,
@@ -91,8 +91,8 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
         date_created: request.body.date_created
     
     });
-    const artBoard = artBoard.map(artBoard => artBoard.get({ plain: true }));
-    result.render('artboard', {artBoard, logged_in: true });
+    var artboard = artboard.map(artboard => artboard.get({ plain: true }));
+    result.render('artboard', {artboard, logged_in: true });
 }
 catch (error){
     result.status(400).json(error);
@@ -103,7 +103,7 @@ catch (error){
 //Gets all artwork posted on site
 router.get('/artboard', async (request, result) => {
     try{
-        const artBoard = await Artisan.findAll({
+        var artboard = await Artisan.findAll({
             attributes:[
                 'id',
                 'name',
@@ -126,7 +126,7 @@ router.get('/artboard', async (request, result) => {
                 }
             }]
         });
-        result.status(200).json(artBoard);
+        result.status(200).json(artboard);
     }
     catch(error){
         result.status(500).json(error);
@@ -138,7 +138,7 @@ router.get('/artboard', async (request, result) => {
 //Putting the post up after form submit by user
 router.put('/artboard/:id', WithAuth, async (request, result) => {
 try{
-    const artBoard = await Artisan.update({
+    var artboard = await Artisan.update({
         where:{id:request.params.id},
         
         name: request.body.name,
@@ -146,8 +146,8 @@ try{
         image:request.body.image,
         date_created: request.body.date_created,    
     });
-    const artBoard = artBoard.map(artBoard => artBoard.get({ plain: true }));
-    result.render('artboard', {artBoard, logged_in: true });
+    var artboard = artboard.map(artboard => artboard.get({ plain: true }));
+    result.render('artboard', {artboard, logged_in: true });
 
 }
 catch(error){
@@ -160,15 +160,15 @@ catch(error){
 //Deletes a single post using DESTROY
 router.delete('/artboard/:id', WithAuth, async (request, result) => {
     try {
-        const artBoard = await Artisan.destroy({
+        var artboard = await Artisan.destroy({
             where: {id: request.params.id}
         });
-        if(!artBoard){
+        if(!artboard){
             result.status(404).json({message: "No art was found that matched the user id"});
             return;
         }
-        result.status(200).json(artBoard);
-        console.log(artBoard);
+        result.status(200).json(artboard);
+        console.log(artboard);
     }
     catch(error){
         result.status(500).json(error);
