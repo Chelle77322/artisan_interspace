@@ -7,7 +7,7 @@ async function artPosting(event){
     const date = artPost('#artisan-date_created').value.trim();
   
 
-    const response = await fetch ('/api/artboard', {
+    const response = await fetch ('/api/users/artboard', {
         method: 'POST',
         body: JSON.stringify({
            name : name,
@@ -19,7 +19,7 @@ async function artPosting(event){
         headers: {'Content-Type': 'application/json'}
     });
     if (response.ok){
-       document.location.replace('./artboard');
+       document.location.replace('/artboard');
     }else{
        alert(response.statusText);
     }
