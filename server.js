@@ -4,7 +4,7 @@ const session = require ('express-session');
 const handlebars = require('express-handlebars');
 const routes = require ('./controllers');
 const helpers = require ('./utils/helpers');
-const multer = require('multer');
+//const multer = require('multer');
 
 const sequelize = require ('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')
@@ -32,7 +32,7 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.status(_dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 
 
@@ -44,16 +44,16 @@ app.get('public', async (request, result) => {
    
 });
 //Setting up multer package for image upload
-const multer = multer.diskStorage({
-  destination: (request, file, store) => {
-  store(path.join(_dirname,'public'));
-  },
+//const multer = multer.diskStorage({
+  //destination: (request, file, store) => {
+  //store(path.join(_dirname,'public'));
+  //},
 
-    filename: (request, file,store) => {
-    const ext = file.mimetype.split('/')[1];
-      store(path.join(_dirname, 'public/'), `user-${request.user.id}-${Date.now()}.${ext}`);
-    }
-  });
+    //filename: (request, file,store) => {
+    //const ext = file.mimetype.split('/')[1];
+      //store(path.join(_dirname + 'public/'), //`user-${request.user.id}-${Date.now()}.${ext}//`);
+    //}
+  //});
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync ({force: false}).then(() => {
