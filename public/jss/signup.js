@@ -1,4 +1,4 @@
-const signupArtist = async(event) => {
+async function signupArtist (event) {
     event.preventDefault();
 
     const artSign = document.querySelector.bind(document);

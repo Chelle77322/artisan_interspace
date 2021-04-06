@@ -10,7 +10,7 @@ if (email && password){
     const response = await fetch('/api/users/login', {
         method: 'POST',
         body: JSON.stringify({
-            email, 
+            email: email, 
             password}),
 
         headers: { 'Content-Type': 'application/json'},
@@ -18,9 +18,11 @@ if (email && password){
 
     if(response.ok){
         //On Success will go to profile page of user
-        document.location.replace('/profile');
+        document.location.replace('/artboard');
     } else {
-        alert(response.statusText);
+        alert(response);
+        console.log(error);
+        console.log(response.statusText);
     }
     }
 };

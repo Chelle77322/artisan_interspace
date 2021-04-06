@@ -11,28 +11,18 @@
             </div>   
                  
  <div>
-     <table class = "table-art" style = "margin:auto">
-         <thead>
-             <tr>
-                 <th align = "center"><abbr title = "date_created">Date Created</abbr></th>
-                 <th align = "center"><abbr title ="artisan-name">Artist Name</abbr></th>
-                   <th align = "center"><abbr title ="artisan-description">Description of Work</abbr></th>
-             </tr>
-         </thead>
-         <tbody>
+     
    {{#each artisans as |artisan|}}
-<tr>
+
     <th>{{id}}</th>
     <td>{{artisan-name}}</td>
     <td>{{artisan-content}}</td>
     <td>{{artisan-description}}</td>
     <td>{{date_created}}</td>
 
-</tr>
-{{/each}}
-</tbody>
 
-     </table>
+{{/each}}
+
  </div>
         </div>
     </div>
