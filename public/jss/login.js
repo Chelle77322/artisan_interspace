@@ -1,17 +1,17 @@
-const artistLogin = async (event) => {
+async function artistLogin(event) {
     event.preventDefault();
 //Collects values from login form
 const login = document.querySelector.bind(document);
 const email = login('#email-login').value.trim();
 const password = login('#password-login').value.trim();
-console.log(email, password)
+
 if (email && password){
     //This sends a POST request to API endpoint
     const response = await fetch('/api/users/login', {
         method: 'POST',
         body: JSON.stringify({
-            email: email, 
-            password: password}),
+            email, 
+            password}),
 
         headers: { 'Content-Type': 'application/json'},
     });
