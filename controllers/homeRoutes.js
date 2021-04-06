@@ -64,11 +64,11 @@ router.get ('/artboard/:id', async(request, result) => {
 //Gets information after login
 router.get('/login', async (request, result) => {
     try{
-   if (request.session.logged_in){
-       result.redirect('login', {user});
+   if (!request.session.logged_in){
+       result.redirect('/');
         return;
     }
-    const userData = await User.findOne(request.session.user_id, {
+    const userData = await User.findByPk(request.session.user_id, {
         include:[
             {
                 model: Artisan,
@@ -82,7 +82,7 @@ router.get('/login', async (request, result) => {
         ],
     });
     const user = userData.get({plain: true});
-    result.status(200).json(userData);
+    result.status(200);
     result.render('artboard', {
         ...user,  logged_in: request.session.logged_in,
     });
@@ -125,7 +125,9 @@ router.get ('/artboard/:id', async (request, result)=> {
             return;
         }
         const comment = artComment.get({plain:true});
-        result.render('artboard', {comment, logged_in: request.session.logged_in});
+        result.render('artboard', 
+        {
+            ...comment, logged_in: request.session.logged_in});
     }
     catch(error){
         result.status(404).json(error);
@@ -164,7 +166,9 @@ router.get('/artboard_comment', async (request, result) => {
             return;
           }
           const comments = artComment.get({plain:true});
-        result.render('artboard', {comments, logged_in: request.session.logged_in});    
+
+        result.render('artboard',
+         {...comments, logged_in: request.session.logged_in});    
         
     }
     catch (error){

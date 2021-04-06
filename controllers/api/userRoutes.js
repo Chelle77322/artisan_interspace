@@ -5,7 +5,6 @@ const {User, Artisan, ArtComment} = require('../../models');
 router.post('/', async (request, result) => {
 try {
     const userData = await User.create(request.body);
-    console.log(userData)
     request.session.save(()=>{
         (request.session.user_id = user.id),
         (request.session.logged_in = true);
@@ -46,6 +45,7 @@ router.post('/login', async (request, result,) => {
       const userData = await User.findOne({
         where: {
             email: request.body.email,
+            password: request.body.password
            
         },
   });
