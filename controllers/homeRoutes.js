@@ -4,38 +4,39 @@ const {Artisan, User, ArtComment} = require('../models');
 
 const WithAuth = require('../utils/auth');
 //Gets all information
-//router.get('/', (request, result) => {
-  //  Artisan.findAll({
-    //    attributes:[
-    //        'id',
-    //        'image',
-    //        'description',
-    //        'date_created'
-     //   ],
-     //   include: [
-     //    {
-     //        model: ArtComment,
-      //       attributes: [
-      //           'id',
-        //         'comment_text',
-          //       'artisan_id',
-            //     'user_id',
-              //   'date_created'
-          //   ],
-           //  include: {
-             //    model: User,
-               //  attributes: ['name']
-             //}
-         //}   
-        //]
-    //}).then(dbArtisanData => {
+router.get('/', (request, result) => {
+    Artisan.findAll({
+        attributes:[
+            'id',
+            'name',
+            'image',
+           'description',
+          'date_created'
+       ],
+      include: [
+        {
+           model: ArtComment,
+            attributes: [
+                'id',
+                'comment_text',
+               'artisan_id',
+                'user_id',
+               'date_created'
+            ],
+             include: {
+                model: User,
+                attributes: ['name']
+             }
+         }   
+        ]
+     
       //  const artisans = dbArtisanData.map(artisan => artisan.get({plain: true}));
        // result.render('homepage', {artisans, //logged_in: request.session.logged_in});
     //}).catch (error => {
       //  console.log(error);
         //result.status(500).json(error);
-    //});
-//});
+    });
+});
 
 router.get('/',async (request, result) => {
     try {

@@ -1,6 +1,14 @@
-var router = require('express').Router();
-var {Artisan, User, ArtComment} = require('../../models');
-var WithAuth = require('../../utils/auth');
+const router = require('express').Router();
+const {Artisan, User, ArtComment} = require('../../models');
+const WithAuth = require('../../utils/auth');
+//GET all art posts here
+router.get('/', (request, result)=>{
+    Artisan.findAll({}).then(artboard => 
+    result.json (artboard)).catch(error => {
+        console.log(error);
+        result.status(500).json(error);    
+    })
+});
 //ALL POSTS HERE
 //Posting all art 
 router.post('/', async(request, result) => {
@@ -9,6 +17,7 @@ router.post('/', async(request, result) => {
             ...request.body, user_id: request.session.user_id,
             attributes: [
                 'id',
+                'image',
                 'name',
                 'description',
                 'date_created',
