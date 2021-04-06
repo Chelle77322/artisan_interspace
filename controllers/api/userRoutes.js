@@ -46,7 +46,7 @@ router.post('/login', async (request, result,) => {
       const userData = await User.findOne({
         where: {
             email: request.body.email,
-            password: request.body.password
+           
         },
   });
         if (!userData) {
@@ -79,7 +79,7 @@ router.post ('/logout',async(request, result) => {
     } else{
         result.status(404).end();
     }
-    console.log(result);
+    
 });
 //### ALL GET ROUTES FOR USER ###//
 

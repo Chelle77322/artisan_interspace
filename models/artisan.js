@@ -41,6 +41,7 @@ Artisan.init(
         references: 
         {model: 'user', key: 'id',},
     },
+   
 },
 {
 sequelize,
@@ -49,4 +50,5 @@ freezeTableName: true,
 underscored: true,
 modelName: 'artisan',
 });
+console.log(Artisan);
 module.exports = Artisan;

@@ -19,7 +19,7 @@ const bars = handlebars.create({ helpers });
 
 const sesh = {
     secret: 'SSH secret secret',
-    cookie: {maxAge: 48000},
+    cookie: {maxAge: 4800000000},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -39,21 +39,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-app.get('public', async (request, result)=>{
+app.get('public', async (request, result) => {
     result.json("Welcome to the Artisan Interspace")
+    console.log(result);
    
 });
 //Setting up multer package for image upload
-const multerStorage = multer.diskStorage({
-    destination: (request, file, store) => {
-      store(path.join(_dirname,'public'));
-    },
+//const multerStorage = multer.diskStorage({
+  //  destination: (request, file, store) => {
+    //  store(path.join(_dirname,'public'));
+    //},
 
-    filename: (request, file,store) => {
-      const ext = file.mimetype.split('/')[1];
-      store(path.join(_dirname, 'public'), `user-${request.user.id}-${Date.now()}.${ext}`);
-    }
-  });
+    //filename: (request, file,store) => {
+      //const ext = file.mimetype.split('/')[1];
+      //store(path.join(_dirname, 'public'), `user-${request.user.id}-${Date.now()}.${ext}`);
+    //}
+  //});
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync ({force: false}).then(() => {
