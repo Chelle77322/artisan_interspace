@@ -65,7 +65,7 @@ router.get ('/artboard/:id', async(request, result) => {
 router.get('/login', async (request, result) => {
     try{
    if (!request.session.logged_in){
-       result.redirect('/');
+       result.render('login');
         return;
     }
     const userData = await User.findByPk(request.session.user_id, {
