@@ -21,8 +21,8 @@ if (email && password){
         document.location.replace('/artboard');
     } else {
         alert(response);
-        console.log(error);
-        console.log(response.statusText);
+       
+        console.log(response);
     }
     }
 };

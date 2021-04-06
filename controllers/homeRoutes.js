@@ -1,12 +1,46 @@
-const router = require ('express').Router();
+ const sequelize = require('../config/connection');
+ const router = require ('express').Router();
 const {Artisan, User, ArtComment} = require('../models');
 
 const WithAuth = require('../utils/auth');
+//Gets all information
+//router.get('/', (request, result) => {
+  //  Artisan.findAll({
+    //    attributes:[
+    //        'id',
+    //        'image',
+    //        'description',
+    //        'date_created'
+     //   ],
+     //   include: [
+     //    {
+     //        model: ArtComment,
+      //       attributes: [
+      //           'id',
+        //         'comment_text',
+          //       'artisan_id',
+            //     'user_id',
+              //   'date_created'
+          //   ],
+           //  include: {
+             //    model: User,
+               //  attributes: ['name']
+             //}
+         //}   
+        //]
+    //}).then(dbArtisanData => {
+      //  const artisans = dbArtisanData.map(artisan => artisan.get({plain: true}));
+       // result.render('homepage', {artisans, //logged_in: request.session.logged_in});
+    //}).catch (error => {
+      //  console.log(error);
+        //result.status(500).json(error);
+    //});
+//});
 
 router.get('/',async (request, result) => {
     try {
-        result.render('homepage');
-        result.status(200);
+      result.render('homepage');
+       result.status(200);
     } catch (error) {
         result.status(500).json(error);
     }
@@ -26,71 +60,76 @@ router.get('/signup', async ( request, result) => {
 });
 
 //Gets all Artisan Interspace posts with ids
-router.get ('/artboard/:id', async(request, result) => {
-    try{
-        const artists = await Artisan.findAll({
-            attributes:[
-                'id',
-                  'name',
-                  'description',
-                  'date_created',
-                  'user_id'
-              ],
-              include:[{
-                 model: ArtComment,
-                  attributes: ['id', 'comment_text', 'user_id'],
-                  include: { 
-                     model: User,
-                      attributes: ['name']
-                  }
-              },
-          {
-             model: User,
-              attribute: ['name']
-          }
+//router.get ('/artboard/:id', async(request, result) => {
+//    try{
+  //      const artists = await Artisan.findAll({
+    //        attributes:[
+      //          'id',
+        //          'name',
+          //        'description',
+          //        'date_created',
+            //      'user_id'
+             // ],
+         //     include:[{
+           //      model: ArtComment,
+             //     attributes: ['id', 'comment_text', 'user_id'],
+              //    include: { 
+                //     model: User,
+                  //    attributes: ['name']
+                 // }
+              //},
+          //{
+            // model: User,
+             // attribute: ['name']
+          //}
           
-          ]
-        });
-        const art = artists.map(art => art.get({plain:true}));
-        result.render('artboard', {art, logged_in:request.session.logged_in});
-    }
-    catch (error){
-        result.status(404).json(error);
-        console.log(error);
-    }
+         // ]
+        //});
+        //const art = artists.map(art => art.get({plain:true}));
+        //result.render('artboard', {art, logged_in:request.session.logged_in});
+   // }
+   // catch (error){
+     //   result.status(404).json(error);
+       // console.log(error);
+    //}
    
-});
+//});
 
 //Gets information after login
-router.get('/login', async (request, result) => {
-    try{
-   if (!request.session.logged_in){
-       result.render('login');
+router.get('/login',(request, result) => {
+    
+   if (request.session.logged_in){
+       result.redirect('/');
         return;
     }
-    const userData = await User.findByPk(request.session.user_id, {
-        include:[
-            {
-                model: Artisan,
-                attributes:[
-                    'id',
-                    'name',
-                    'image',
-                     'description',
-                     'date_created']
-            },
-        ],
-    });
-    const user = userData.get({plain: true});
-    result.status(200);
-    result.render('artboard', {
-        ...user,  logged_in: request.session.logged_in,
-    });
-} catch(error){
-    result.status(500).json(error);
-    console.log(error);
-}
-    });
+    result.render('login');
+
+
+});
+
+    //const userData = await User.findByPk(request.session.user_id, {
+      //  include:[
+        //    {
+          //      model: Artisan,
+            //    attributes:[
+              //      'id',
+                //    'name',
+                  //  'image',
+                    // 'description',
+                     //'date_created']
+            //},
+        //],
+    //});
+    //const user = userData.get({plain: true});
+    //result.status(200);
+    //result.render('artboard', {
+      //  ...user,  logged_in: request.session.logged_in,
+    //});
+//} catch(error){
+  //  result.status(500).json(error);
+    //console.log(error);
+//}
+   
 
 //Gets art_comments associated with user id after login
 router.get ('/artboard/:id', async (request, result)=> {
