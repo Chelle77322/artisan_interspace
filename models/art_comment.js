@@ -18,7 +18,8 @@ ArtComment.init(
         allowNull: false,
         },
 
-    comment_date:{
+    comment_date:
+    {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW,
