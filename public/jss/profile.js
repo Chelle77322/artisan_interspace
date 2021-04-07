@@ -18,7 +18,7 @@ const profileCreator = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/artboard');
+        document.location.replace('/profile');
       } else {
         alert('Failed to create art work');
       }
