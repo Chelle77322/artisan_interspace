@@ -27,12 +27,12 @@ router.post('/', async(request, result) => {
                     attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
                     include: {
                         model: User,
-                        attributes: ['name']
+                        attributes: ['user']
                     }
                 },
                 {
                     model: User,
-                    attributes: ['name']
+                    attributes: ['user']
                 }
             ],
         });
