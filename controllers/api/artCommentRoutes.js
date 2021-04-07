@@ -15,7 +15,7 @@ router.get('/:id', (request, result)=>{
     ArtComment.findAll({
         where: { id: request.params.id}
     })
-    .then (artcomments => result.json(artcomments))
+    .then (artcommentData => result.json(artcommentData))
     .catch(error => {
         console.log(error);
         result.status(500).json(error);
@@ -24,12 +24,12 @@ router.get('/:id', (request, result)=>{
 //POSTING
 //Posting all comments here
 router.post('/', async (request, result) => {
-    try{
-        var artcommentData = await ArtComment.findAll({...request.body, user_id: request.session.user_id, 
+    try {
+        var artcommentData = await ArtComment.findAll({...request.body,user_id: request.session.user_id, 
             attributes:[
             'id',
             'comment_text',
-            'date_created',
+            'comment_date',
         ],
         include: [{
             model: Artisan,
@@ -52,7 +52,7 @@ router.post('/', async (request, result) => {
     ],
     });
     result.status(200).json(artcommentData);
-    var artcommentData = artcommentData.map(artcomments => artcomments.get({plain: true}));
+    var artcommentData = artcommentData.map(artcommentData => artcommentData.get({plain: true}));
     result.render('artboard', {artcommentData, logged_in: true });
     } catch (error){
         result.status(400).json(error);
@@ -63,9 +63,11 @@ router.post('/', async (request, result) => {
 router.post('/:id', WithAuth, (request, result)=>{
     ArtComment.create({
         comment_text: request.body.comment_text,
-        artisan_id: request.body.artisan_id,
+        comment_date: request.body.comment_date,
         user_id: request.session.user_id,
-}).then(artcomments => result.json(artcomments)).catch(error => {
+        artisan_id: request.body.artisan_id,
+        
+}).then(artcommentData => result.json(artcommentData)).catch(error => {
     console.log(error);
     result.status(400).json(error);
 })
@@ -74,7 +76,8 @@ router.post('/:id', WithAuth, (request, result)=>{
 //Putting a comment on the board
 router.put('/:id', WithAuth, (request, result) =>{
     ArtComment.update({
-        comment_text: request.body.comment_text
+        comment_text: request.body.comment_text,
+        comment_date: request.body.comment_date,
 
     },{
         where:{id: request.params.id}

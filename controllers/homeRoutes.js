@@ -20,10 +20,6 @@ router.get('/', (request, result) => {
                 'id',
                 'comment_text',
                 'comment_date',
-                'user_id',
-                'artisan_id',
-                
-               
             ],
              include: {
                 model: User,
@@ -31,12 +27,6 @@ router.get('/', (request, result) => {
              }
          }   
         ]
-     
-      //  const artisans = dbArtisanData.map(artisan => artisan.get({plain: true}));
-       // result.render('homepage', {artisans, //logged_in: request.session.logged_in});
-    //}).catch (error => {
-      //  console.log(error);
-        //result.status(500).json(error);
     });
 });
 
@@ -54,8 +44,8 @@ router.get('/signup', async ( request, result) => {
         const userData = await User.findAll({
             attributes:['id', 'name', 'email', 'password']
         });
-        const artist = userData.map(user => user.get({plain:true}))
-        result.render("signup", {artist});
+        const user = userData.map(user => user.get({plain:true}))
+        result.render("signup", {user});
     }catch (error){
         result.status(500).json(error)
     }
@@ -65,17 +55,17 @@ router.get('/signup', async ( request, result) => {
 //Gets all Artisan Interspace posts with ids
 router.get ('/artboard/:id', async(request, result) => {
    try{
-       const artists = await Artisan.findAll({
+       const user = await Artisan.findAll({
            attributes:[
                 'id',
                  'name',
+                 'image',
                  'description',
                   'date_created',
-                  'user_id'
               ],
               include:[{
                  model: ArtComment,
-                 attributes: ['id', 'comment_text','comment_date', 'user_id'],
+                 attributes: ['id', 'comment_text','comment_date'],
                   include: { 
                      model: User,
                      attributes: ['name']
@@ -89,7 +79,7 @@ router.get ('/artboard/:id', async(request, result) => {
           ],
         });
         var artboard = artists.map(artboard => artboard.get({plain:true}));
-        result.render('artboard', {art, logged_in:request.session.logged_in});
+        result.render('artboard', {artboard, logged_in:request.session.logged_in});
     }
    catch (error){
        result.status(404).json(error);
@@ -156,7 +146,7 @@ router.get ('/artboard/:id', async (request, result)=> {
     }
 });
 //Finds one art comment based on id
-router.get('/artboard_comment', async (request, result) => {
+router.get('/artboard_comment/:id', async (request, result) => {
     try{
         const comment = await ArtComment.findByPk({
             where: {
@@ -165,7 +155,7 @@ router.get('/artboard_comment', async (request, result) => {
             attributes: [
                 'id',
                 'comment_text',
-                'comment_date'
+                'comment_date',
                
             ],
             include: [{

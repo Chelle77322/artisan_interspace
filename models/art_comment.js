@@ -1,4 +1,4 @@
-const {Model, DataTypes} = require ('sequelize');
+const {Model, DataTypes}= require ('sequelize');
 const sequelize = require ('../config/connection');
 
 class ArtComment extends Model {}
@@ -46,5 +46,5 @@ ArtComment.init(
     underscored: true,
     modelName: 'art_comment'
 });
-console.log(ArtComment);
+
 module.exports = ArtComment;

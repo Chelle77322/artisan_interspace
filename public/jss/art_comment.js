@@ -1,16 +1,18 @@
 async function ArtCommentFormHandler(event){
     event.preventDefault();
     const artComment = document.querySelector.bind(document);
-    const comment_text = artComment('input[name="comment-body"]').value.trim();
-    //const artisan_id = window.location.toString().split('/')[
-       // window.location.toString().split('/').length -1 ];
+    const comment_text = artComment('input [name = "comment-text"]').value.trim();
+    const comment_date = artComment('input [date = "comment-date"]').value.trim();
+    const artComment = window.location.toString().split('/')[
+        window.location.toString().split('/').length -1 ];
     
         if (comment_text){
             const response = await fetch ('/api/users/art_comment', {
                 method: 'POST',
                 body: JSON.stringify({
-                    artisan_id : artisan_id,
-                    comment_text: comment-text
+                    artcomment_id,
+                    comment_text,
+                    comment_date,
                 }),
                 headers: {'Content-Type': 'application/json'}
             });

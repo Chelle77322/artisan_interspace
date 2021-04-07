@@ -28,7 +28,7 @@ router.post('/signup', async (request, result) => {
         request.session.save(() => {
             (request.session.name = userData.name),
             (request.session.email = userData.email),
-            (request.session.loggedIn = true);
+            (request.session.logged_in = true);
         });
         result.status(200).json(userData);
        
@@ -105,6 +105,7 @@ router.get('/profile/:id', async (request, result) => {
                 model: Artisan,
                     attributes: [
                          'id',
+                         'image',
                         'name',
                         'description',
                         'date_created'
@@ -112,7 +113,7 @@ router.get('/profile/:id', async (request, result) => {
 },
 {
     model: ArtComment,
-    attributes: [ 'id', 'comment_text', 'comment_text'],
+    attributes: [ 'id', 'comment_text', 'comment_date'],
 include: {
     model: Artisan,
     attributes: ['name']

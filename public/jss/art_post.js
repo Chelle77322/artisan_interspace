@@ -10,11 +10,11 @@ async function artPosting(event){
     const response = await fetch ('/api/users/artboard', {
         method: 'POST',
         body: JSON.stringify({
-           name : name,
-            description: description,
-            user_id: user_id,
-            image: image,
-            date_created: date_created,
+           name,
+            description,
+            user_id,
+            image,
+            date_created,
       }),
         headers: {'Content-Type': 'application/json'}
     });

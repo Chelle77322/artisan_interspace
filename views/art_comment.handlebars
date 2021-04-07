@@ -4,10 +4,10 @@
         <h3 class = 'h3'><span class = "small">C</span>omments</h3>
         <section class = 'art_comment card-body'>
             <div class = 'text'>
-                {{comment_text}}
+                {{comment_text}} {{comment_date}}
             </div>
             <div class = "form-group">
-                {{user.name}}, {{format_date date_created}}
+                {{user.name}}, {{format_date comment_date}}
             </div>
         </section>
     </div>

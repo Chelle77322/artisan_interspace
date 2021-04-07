@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const {Artisan, User, ArtComment} = require('../../models');
 const WithAuth = require('../../utils/auth');
+
+
 //GET all art posts here
 router.get('/', (request, result)=>{
     Artisan.findAll({}).then(artboard => 
@@ -24,7 +26,7 @@ router.post('/', async(request, result) => {
             ],
             include: [{
                     model: ArtComment,
-                    attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
+                    attributes: ['id', 'comment_text','comment_date'],
                     include: {
                         model: User,
                         attributes: ['name']
@@ -54,6 +56,7 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
                 id: request.params.id
             },
             attributes: ['id',
+            'image',
             'name',
             'description',
             'date_created'
@@ -64,11 +67,15 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
             },
             {
                 model: ArtComment,
-                attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
+                attributes: ['id', 'comment_text','comment_date'],
                 include: {
                     model: User,
                     attributes: ['name']
-                }
+                },
+                include: {
+                    model: Artisan,
+                    attributes:['name']
+                },
             }
         ],
         });
@@ -115,6 +122,7 @@ router.get('/artboard', async (request, result) => {
         var artboard = await Artisan.findAll({
             attributes:[
                 'id',
+                'image',
                 'name',
                 'description',
                 'date_created',
@@ -128,7 +136,7 @@ router.get('/artboard', async (request, result) => {
             },
             {
                 model: ArtComment,
-                attributes: ['id','comment_text','artisan_id', 'user_id', 'date_created'],
+                attributes: ['id','comment_text','comment_date'],
                 include: {
                     model: User,
                     attributes: ['name']
