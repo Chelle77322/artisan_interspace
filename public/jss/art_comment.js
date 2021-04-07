@@ -17,7 +17,7 @@ async function ArtCommentFormHandler(event){
                 headers: {'Content-Type': 'application/json'}
             });
             if (response.ok){
-                document.location.reload('/profile');
+                document.location.reload('/artboard');
             } else{
                 alert(response.statusText);
                 document.querySelector('#comment-form');
