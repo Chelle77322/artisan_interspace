@@ -27,12 +27,12 @@ router.post('/', async(request, result) => {
                     attributes: ['id', 'comment_text', 'artisan_id', 'user_id', 'date_created'],
                     include: {
                         model: User,
-                        attributes: ['user']
+                        attributes: ['name']
                     }
                 },
                 {
                     model: User,
-                    attributes: ['user']
+                    attributes: ['name']
                 }
             ],
         });
@@ -78,7 +78,7 @@ router.get('/artboard/:id', WithAuth, async (request, result) => {
             result.status(404).json({ message: 'No art has been found associated with this user' });
             return;
         } else{
-            var artboard = artboard.map(artboard => art.get({ plain: true }));
+            var artboard = artboard.map(artboard => artboard.get({ plain: true }));
             result.render('artboard', {artboard, logged_in: true });
         }
 
@@ -117,7 +117,7 @@ router.get('/artboard', async (request, result) => {
                 'id',
                 'name',
                 'description',
-                'date_created'
+                'date_created',
             ],
             order:[
                 ['date_created', 'description']

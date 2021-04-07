@@ -42,12 +42,12 @@ router.post('/', async (request, result) => {
             ],
             include:{
                 model: User,
-                attributes: ['user']
+                attributes: ['name']
             }
         },
         {
             model: User,
-            attribute: ['user']
+            attribute: ['name']
         }
     ],
     });
@@ -78,12 +78,12 @@ router.put('/:id', WithAuth, (request, result) =>{
 
     },{
         where:{id: request.params.id}
-    }).then(artcomments => {
-        if (artcomments){
+    }).then(artcommentData => {
+        if (artcommentData){
             result.status(404).json({message: 'No comment was found matching this id'});
             return;
         }
-        result.json(artcomments);
+        result.json(artcommentData);
     }).catch(error =>{
         console.log(error);
         result.status(500).json(error);
@@ -94,13 +94,13 @@ router.put('/:id', WithAuth, (request, result) =>{
 router.delete('/:id', WithAuth, (request, result) => {
     ArtComment.destroy({
         where:{id: request.params.id}
-    }).then(artcomments => {
-        if(!artcomments){
+    }).then(artcommentData => {
+        if(!artcommentData){
             result.status(404).json({message: 'No comment found with this id'});
             return;
         }
-        result.json(artcomments);
-        console.log(artcomments);
+        result.json(artcommentData);
+        console.log(artcommentData);
     }).catch(error =>{
         console.log(error);
         result.status(500).json(error);

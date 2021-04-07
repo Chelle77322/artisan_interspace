@@ -112,7 +112,7 @@ router.get('/profile/:id', async (request, result) => {
 },
 {
     model: ArtComment,
-    attributes: [ 'id', 'comment_text', 'date_created'],
+    attributes: [ 'id', 'comment_text', 'comment_text'],
 include: {
     model: Artisan,
     attributes: ['name']

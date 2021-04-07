@@ -1,19 +1,22 @@
  [
      {
     "comment_text": "Fantasic piece of art work",
+    "comment_date":"17/05/2020",
     "user_id":6,
-    "artisan_id":1,
-    "date_created":"17/05/2020"
+    "artisan_id":1
+    
 },
 {
     "comment_text": "Love the bold and vibrant brush strokes",
+    "comment_date":"13/11/2020",
     "user_id":1,
-    "artisan_id":2,
-    "date_created":"13/11/2020"
+    "artisan_id":2
+   
 },
 {
     "comment_text": "Great use of mediums",
+    "comment_date":"11/3/2021",
     "user_id":3,
-    "artisan_id": 3,
-    "date_created":"11/3/2021"
+    "artisan_id": 3
+
 }]
