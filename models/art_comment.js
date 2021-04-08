@@ -14,7 +14,7 @@ ArtComment.init(
     },
 
     comment_text:{
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         },
 
@@ -45,7 +45,7 @@ ArtComment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'art_comment'
+    modelName:'art_comment'
 });
 
 module.exports = ArtComment;
