@@ -1,9 +1,14 @@
 <div class = "container">
     <div class = "card-body">
         <div class = "col-md-6">
+            {{if artisan.length}}
+            <h2><span class = "small">Artist</span>Post</h2>
             {{#each artisans as |artisan|}}
-            {{>artisan-description artisan}}
+            {{>artboard-artisan}}
             {{/each}}
         </div>
+        {{/if}}
     </div>
+    <button type = "submit" class = "btn btn-primary"<a class = "link" href ="/artboard/new">+ New Art</a></button>
+    <script src = "/jss/art_post.js"></script>
 </div>
