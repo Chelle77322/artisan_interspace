@@ -27,3 +27,5 @@ const artboardData = [{
       }
 
     ];
+    const seedArtisan = () => Artisan.bulkCreate(artboardData);
+    module.exports = seedArtisan;
