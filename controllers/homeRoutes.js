@@ -10,8 +10,8 @@ router.get('/', (request, result) => {
             'id',
             'name',
             'image',
-           'description',
-          'date_created',
+            'description',
+            'date_created',
        ],
       include: [
         {
@@ -20,6 +20,7 @@ router.get('/', (request, result) => {
                 'id',
                 'comment_text',
                 'comment_date',
+                'user_id',
             ],
              include: {
                 model: User,
@@ -65,7 +66,7 @@ router.get ('/artboard/:id', async(request, result) => {
               ],
               include:[{
                  model: ArtComment,
-                 attributes: ['id', 'comment_text','comment_date'],
+                 attributes: ['id', 'comment_text','comment_date', 'user_id',],
                   include: { 
                      model: User,
                      attributes: ['name']

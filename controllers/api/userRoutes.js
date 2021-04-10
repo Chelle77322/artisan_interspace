@@ -104,8 +104,8 @@ router.get('/profile/:id', async (request, result) => {
                 include: [{
                 model: Artisan,
                     attributes: [
-                         'id',
-                         'image',
+                        'id',
+                        'image',
                         'name',
                         'description',
                         'date_created'
@@ -113,12 +113,19 @@ router.get('/profile/:id', async (request, result) => {
 },
 {
     model: ArtComment,
-    attributes: [ 'id', 'comment_text', 'comment_date'],
-include: {
-    model: Artisan,
+    attributes: [
+            'id', 
+            'comment_text', 
+            'comment_date',
+            'user_id', 
+            'artisan_id'],
+    
+    include: {
+    
+        model: Artisan,
     attributes: ['name']
-}
-},
+    }
+},      
 {
     model: Artisan,
     attributes: ['name'],
