@@ -18,7 +18,7 @@ const bars = handlebars.create({ helpers });
 
 const sesh = {
     secret: 'SSH secret secret',
-    cookie: {maxAge: 4800000000},
+    cookie: {},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({

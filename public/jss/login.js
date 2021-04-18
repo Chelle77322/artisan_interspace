@@ -18,7 +18,7 @@ if (email && password){
 
     if(response.ok){
         //On Success will go to profile page of user
-        document.location.replace('/profile');
+        document.location.replace('/artboard');
     } else {
         alert(response);
        
